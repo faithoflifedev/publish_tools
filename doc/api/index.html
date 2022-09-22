@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 6.0.0">
+  <meta name="description" content="publish_tools API docs, for the Dart programming language.">
+  <title>publish_tools - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="" data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/faithoflifedev/publish_tools">publish_tools package</a></li>
+  </ol>
+  <div class="self-name">publish_tools</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="publish_tools">publish_tools</h1>
+<p><a href="https://pub.dartlang.org/packages/publish_tools"><img src="https://img.shields.io/pub/v/publish_tools.svg" alt="pub package"></a></p>
+<p>This package provides a set of <a href="https://pub.dev/packages/grinder">Grinder</a> tasks that make it easy to release a Dart and Flutter packages.</p>
+<p><a href="https://github.com/faithoflifedev/publish_tools/actions"><img src="https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg" alt="Build Status"></a> <a href="https://shields.io/github/last-commit/faithoflifedev/publish_tools"><img src="https://shields.io/github/last-commit/faithoflifedev/publish_tools" alt="github last commit"></a> <a href="https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart"><img src="https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart" alt="github build"></a> <a href="https://shields.io/github/issues/faithoflifedev/publish_tools"><img src="https://shields.io/github/issues/faithoflifedev/publish_tools" alt="github issues"></a></p>
+<h2 id="getting-started">Getting started</h2>
+<h3 id="requirements">Requirements</h3>
+<p>In able to use the <code>GitHub</code> publishing features of this package your development setup must meet the following requirements:</p>
+<ul>
+<li><code>git</code> must be available in your command path (most people reading this will have this requirement met, if not see - <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Installing Git</a>)</li>
+<li>you have a <code>GitHub</code> account and have setup a personal access token (see the documentation - <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">Creating a personal access token</a>)</li>
+<li>The access token should have <code>delete_repo</code>, <code>public_rep</code> permissions</li>
+</ul>
+<p><strong>Make sure that you <code>.gitignore</code> your <code>publish_tools.yaml</code> file to prevent publishing your token to GitHub</strong></p>
+<h3 id="pubspecyaml-setup">pubspec.yaml setup</h3>
+<p>In your <code>pubspec.yaml</code> the following to the <code>dev_dependencies</code> section:</p>
+<pre class="language-yml"><code class="language-yml">dev_dependencies:
+  ...
+  grinder: ^0.9.2
+  publish_tools: ^0.1.0
+</code></pre>
+<p>Optionally, provide a non-default path for your configuration .yaml file: (remember to <code>.gitignore</code> it)</p>
+<pre class="language-yml"><code class="language-yml">publish_tools: tool/config.yaml
+</code></pre>
+<h3 id="publish_toolsyaml-setup">publish_tools.yaml setup</h3>
+<p>Create a folder named <code>tool</code> (which will already exist if you use the <code>grinder</code> package).  In this folder create you <code>publish_tools</code> configuration file.</p>
+<pre class="language-yml"><code class="language-yml"># this is a minimal config, several fields will be assigned default values
+
+github:
+  repoUser: [your github user]
+  bearerToken: [bearer token created in GitHub]
+
+# templates:
+#   - name: README.md
+#     type: overwrite
+#   - name: CHANGELOG.md
+#     type: prepend
+
+commit: 'sample commit message'
+</code></pre>
+<p>Create</p>
+<pre class="language-dart"><code class="language-dart">import 'package:grinder/grinder.dart';
+import 'package:publish_tools/publish_tools.dart';
+
+main(args) async {
+  PublishTools.addAllTasks();
+
+  grind(args);
+}
+
+@DefaultTask('Just keeping it real')
+@Depends('pt-commit')
+build() {
+  log('building...');
+}
+</code></pre>
+<p>other packages:</p>
+<p><a href="https://pub.dev/packages/cli_pkg">cli_pkg</a></p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="publish_tools">
+  <span class="name"><a href="publish_tools/publish_tools-library.html">publish_tools</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="https://github.com/faithoflifedev/publish_tools">publish_tools package</a></li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">publish_tools</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="publish_tools/publish_tools-library.html">publish_tools</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    publish_tools
+      0.1.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

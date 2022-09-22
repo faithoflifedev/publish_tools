@@ -96,6 +96,13 @@ class PublishTools {
       description: 'Remove build folder and homebrew repository.',
     ));
 
+    addTask(GrinderTask(
+      'pt-publish',
+      taskFunction: _publish,
+      depends: ['pt-commit'],
+      description: 'Remove build folder and homebrew repository.',
+    ));
+
     // addTask(GrinderTask(
     //   'pt-dry-run',
     //   depends: ['pt-markdown'],
@@ -106,6 +113,9 @@ class PublishTools {
 
   // static void _dryrun() =>
   //     run('dart', arguments: ['pub', 'publish', '--dry-run']);
+
+  static void _publish() =>
+      run('dart', arguments: ['pub', 'publish', '--force']);
 
   static Future<void> _clean() async {
     final String homebrewRepoName = 'homebrew-${ptConfig.github.repoName}';
