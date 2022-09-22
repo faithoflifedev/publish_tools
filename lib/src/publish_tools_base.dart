@@ -317,13 +317,13 @@ end''';
   static Future<void> _commit() async {
     final pubSpec = ptConfig.pubSpec;
 
-    final github =
-        GitHub(auth: Authentication.withToken(ptConfig.github.bearerToken));
+    // final github =
+    //     GitHub(auth: Authentication.withToken(ptConfig.github.bearerToken));
 
-    final projectSlug =
-        RepositorySlug(ptConfig.github.repoUser, ptConfig.github.repoName);
+    // final projectSlug =
+    //     RepositorySlug(ptConfig.github.repoUser, ptConfig.github.repoName);
 
-    final repository = await github.repositories.getRepository(projectSlug);
+    // final repository = await github.repositories.getRepository(projectSlug);
 
     hasGitInstalled();
 

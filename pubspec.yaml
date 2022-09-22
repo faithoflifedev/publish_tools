@@ -1,7 +1,8 @@
 name: publish_tools
 description: A package for making it easy to publishing Dart/Flutter packages and cli tools.
 version: 0.1.0
-# homepage: https://www.example.com
+homepage: https://github.com/faithoflifedev/publish_tools
+repository: https://github.com/faithoflifedev/publish_tools
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
