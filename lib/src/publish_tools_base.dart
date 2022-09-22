@@ -87,6 +87,7 @@ class PublishTools {
     addTask(GrinderTask(
       'pt-homebrew',
       taskFunction: _homebrew,
+      depends: ['pt-release'],
       description: 'Update the homebrew repository.',
     ));
 

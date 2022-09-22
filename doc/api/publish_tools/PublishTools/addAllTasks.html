@@ -119,6 +119,7 @@
   addTask(GrinderTask(
     &#39;pt-homebrew&#39;,
     taskFunction: _homebrew,
+    depends: [&#39;pt-release&#39;],
     description: &#39;Update the homebrew repository.&#39;,
   ));
 
@@ -203,7 +204,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      0.1.0+1
+      0.1.0+2
   </span>
 
   
