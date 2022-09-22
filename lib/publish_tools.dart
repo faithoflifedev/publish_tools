@@ -1,3 +1,4 @@
+/// `publish_tools` is a library of additional `grinder` tasks that ease publishing a Dart or Flutter package to pub.dev/packages
 library publish_tools;
 
 export 'src/model/publish_tools_config.dart';
