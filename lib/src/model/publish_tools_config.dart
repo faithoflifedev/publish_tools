@@ -77,7 +77,7 @@ class PublishToolsConfig {
       pubSpec: pubSpec,
       github: GithubConfig.fromYamlMap(config['github'], pubSpec),
       homebrew: HomebrewConfig.fromYamlMap(config['homebrew'] ?? YamlMap()),
-      optionalMetaFilePath: config['meta_path'],
+      optionalMetaFilePath: config['meta'],
       templates: config.containsKey('templates')
           ? (config['templates'] as List)
               .map((template) => MarkdownTemplate.fromYamlMap(template))

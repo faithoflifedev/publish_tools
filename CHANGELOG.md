@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0+3
+
+* fix meta.dart path
+
 ## 0.1.0+2
 
 * pt-release as dependency of pt-homebrew

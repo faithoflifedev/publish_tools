@@ -81,7 +81,7 @@
     pubSpec: pubSpec,
     github: GithubConfig.fromYamlMap(config[&#39;github&#39;], pubSpec),
     homebrew: HomebrewConfig.fromYamlMap(config[&#39;homebrew&#39;] ?? YamlMap()),
-    optionalMetaFilePath: config[&#39;meta_path&#39;],
+    optionalMetaFilePath: config[&#39;meta&#39;],
     templates: config.containsKey(&#39;templates&#39;)
         ? (config[&#39;templates&#39;] as List)
             .map((template) =&gt; MarkdownTemplate.fromYamlMap(template))
@@ -163,7 +163,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      0.1.0+2
+      0.1.0+3
   </span>
 
   

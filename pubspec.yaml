@@ -1,6 +1,6 @@
 name: publish_tools
 description: A package for making it easy to publishing Dart/Flutter packages and cli tools.
-version: 0.1.0+2
+version: 0.1.0+3
 homepage: https://github.com/faithoflifedev/publish_tools
 repository: https://github.com/faithoflifedev/publish_tools
 
