@@ -49,6 +49,9 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p><a href="../publish_tools/PublishTools-class.html">PublishTools</a> has primarily static methods since each method will typically operate individually from the others.</p>
+</section>
 
 
 
@@ -155,13 +158,35 @@
     <h2>Static Properties</h2>
 
     <dl class="properties">
+        <dt id="buildFolder" class="property">
+  <span class="name"><a href="../publish_tools/PublishTools/buildFolder.html">buildFolder</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/2.18.1/dart-core/String-class.html">String</a></span> 
+
+</dt>
+<dd>
+  The folder that will hold the homebrew tap
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="hasIgnore" class="property">
+  <span class="name"><a href="../publish_tools/PublishTools/hasIgnore.html">hasIgnore</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/2.18.1/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd>
+  Check if the project .gitignore has an entry for the homebrew tap build folder
+  <div class="features">final</div>
+
+</dd>
+
         <dt id="isNewVersion" class="property">
   <span class="name"><a href="../publish_tools/PublishTools/isNewVersion.html">isNewVersion</a></span>
   <span class="signature">&#8594; <a href="https://api.dart.dev/stable/2.18.1/dart-core/bool-class.html">bool</a></span> 
 
 </dt>
 <dd>
-  
+  Used to check if the <code>version</code> of the library has changed since the last commit.
   <div class="features">final</div>
 
 </dd>
@@ -172,7 +197,7 @@
 
 </dt>
 <dd>
-  
+  A parent object holding config info for the various operations of the library
   <div class="features">final</div>
 
 </dd>
@@ -191,7 +216,7 @@
 
 </dt>
 <dd>
-  Enables all tasks from the <code>publish_tools</code> package.
+  Enables all <code>Grinder</code> tasks available in the <code>publish_tools</code> package.
   
 
 </dd>
@@ -272,6 +297,8 @@
 
 
         <li class="section-title"><a href="../publish_tools/PublishTools-class.html#static-properties">Static properties</a></li>
+          <li><a href="../publish_tools/PublishTools/buildFolder.html">buildFolder</a></li>
+          <li><a href="../publish_tools/PublishTools/hasIgnore.html">hasIgnore</a></li>
           <li><a href="../publish_tools/PublishTools/isNewVersion.html">isNewVersion</a></li>
           <li><a href="../publish_tools/PublishTools/ptConfig.html">ptConfig</a></li>
 
@@ -288,7 +315,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      0.1.0+3
+      0.1.0+4
   </span>
 
   

@@ -55,20 +55,19 @@
 
         </section>
         
+<section class="desc markdown">
+  <p>Used to check if the <code>version</code> of the library has changed since the last commit.</p>
+</section>
 
         
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static final bool isNewVersion = () {
-  final pubSpec = ptConfig.pubSpec;
-
-  return _git([
-        &#39;tag&#39;,
-        &#39;-l&#39;,
-        &#39;v${pubSpec.version}&#39;,
-      ]).trim() !=
-      &#39;v${pubSpec.version}&#39;;
-}();
+  <pre class="language-dart"><code class="language-dart">static final bool isNewVersion = _git([
+      &#39;tag&#39;,
+      &#39;-l&#39;,
+      &#39;v${ptConfig.pubSpec.version}&#39;,
+    ]).trim() !=
+    &#39;v${ptConfig.pubSpec.version}&#39;;
 
 </code></pre>
 </section>
@@ -113,6 +112,8 @@
 
 
         <li class="section-title"><a href="../../publish_tools/PublishTools-class.html#static-properties">Static properties</a></li>
+          <li><a href="../../publish_tools/PublishTools/buildFolder.html">buildFolder</a></li>
+          <li><a href="../../publish_tools/PublishTools/hasIgnore.html">hasIgnore</a></li>
           <li><a href="../../publish_tools/PublishTools/isNewVersion.html">isNewVersion</a></li>
           <li><a href="../../publish_tools/PublishTools/ptConfig.html">ptConfig</a></li>
 
@@ -132,7 +133,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      0.1.0+3
+      0.1.0+4
   </span>
 
   

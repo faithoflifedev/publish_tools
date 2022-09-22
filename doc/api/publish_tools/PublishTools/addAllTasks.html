@@ -59,7 +59,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Enables all tasks from the <code>publish_tools</code> package.</p>
+  <p>Enables all <code>Grinder</code> tasks available in the <code>publish_tools</code> package.</p>
 </section>
 
 
@@ -67,55 +67,64 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static void addAllTasks() {
+  &#47;&#47;&#47; Equivalent to `dart analyze .`
   addTask(GrinderTask(
     &#39;pt-analyze&#39;,
     taskFunction: () =&gt; Analyzer.analyze(&#39;.&#39;, fatalWarnings: true),
     description: &#39;Perform static analysis.&#39;,
   ));
 
+  &#47;&#47;&#47; Equivalent to `dart format .`
   addTask(GrinderTask(
     &#39;pt-format&#39;,
     taskFunction: () =&gt; DartFmt.format(&#39;.&#39;),
     description: &#39;Format code that might be auto-generated.&#39;,
   ));
 
+  &#47;&#47;&#47; Equivalent to `dart doc`
   addTask(GrinderTask(
     &#39;pt-doc&#39;,
     taskFunction: () =&gt; DartDoc.doc(),
     description: &#39;Generate the API documentation.&#39;,
   ));
 
+  &#47;&#47;&#47; Equivalent to `dart test .`
   addTask(GrinderTask(
     &#39;pt-test&#39;,
     taskFunction: () =&gt; TestRunner().test(),
     description: &#39;Perform tests.&#39;,
   ));
 
+  &#47;&#47;&#47; Creates a file `meta.dart` in the folder specified by the config, this file contains a JSON representation of the pubspec.yaml file, giving access to that information to `cli` programs.
   addTask(GrinderTask(
     &#39;pt-meta&#39;,
     taskFunction: _meta,
     description: &#39;Update the pubspec.json to display for the cli command.&#39;,
   ));
 
+  &#47;&#47;&#47; Processes any `markdown` templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use `mustache` syntax to access data from the [PublishToolsConfig] object.
   addTask(GrinderTask(
     &#39;pt-markdown&#39;,
     taskFunction: _markdown,
     description: &#39;Update the markdown templates with pubspec info.&#39;,
   ));
 
+  &#47;&#47;&#47; Commit the project to github
   addTask(GrinderTask(
     &#39;pt-commit&#39;,
-    depends: [&#39;pt-analyze&#39;, &#39;pt-format&#39;, &#39;pt-doc&#39;, &#39;pt-meta&#39;, &#39;pt-markdown&#39;],
+    depends: [&#39;pt-doc&#39;, &#39;pt-analyze&#39;, &#39;pt-meta&#39;, &#39;pt-format&#39;, &#39;pt-markdown&#39;],
     taskFunction: _commit,
     description: &#39;Commit, tag and push to github.&#39;,
   ));
 
+  &#47;&#47;&#47; Create a `Release` for the current project in `GitHub`
   addTask(GrinderTask(
     &#39;pt-release&#39;,
     taskFunction: _release,
     description: &#39;Update the markdown templates with pubspec info.&#39;,
   ));
 
+  &#47;&#47;&#47; Create a homebrew tap for the command line executeable for this project
   addTask(GrinderTask(
     &#39;pt-homebrew&#39;,
     taskFunction: _homebrew,
@@ -129,10 +138,10 @@
     description: &#39;Remove build folder and homebrew repository.&#39;,
   ));
 
+  &#47;&#47;&#47; publish the library to pub.dev&#47;packages
   addTask(GrinderTask(
     &#39;pt-publish&#39;,
     taskFunction: _publish,
-    depends: [&#39;pt-commit&#39;],
     description: &#39;Remove build folder and homebrew repository.&#39;,
   ));
 
@@ -185,6 +194,8 @@
 
 
         <li class="section-title"><a href="../../publish_tools/PublishTools-class.html#static-properties">Static properties</a></li>
+          <li><a href="../../publish_tools/PublishTools/buildFolder.html">buildFolder</a></li>
+          <li><a href="../../publish_tools/PublishTools/hasIgnore.html">hasIgnore</a></li>
           <li><a href="../../publish_tools/PublishTools/isNewVersion.html">isNewVersion</a></li>
           <li><a href="../../publish_tools/PublishTools/ptConfig.html">ptConfig</a></li>
 
@@ -204,7 +215,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      0.1.0+3
+      0.1.0+4
   </span>
 
   

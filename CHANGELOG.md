@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0+4
+
+* additional documentation
+* add the build folder that this package creates to the gitignore
+
 ## 0.1.0+3
 
 * fix meta.dart path

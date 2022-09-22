@@ -12,78 +12,96 @@ import 'package:universal_io/io.dart';
 
 final projectDir = Directory.current;
 
+/// [PublishTools] has primarily static methods since each method will typically operate individually from the others.
 class PublishTools {
+  /// The folder that will hold the homebrew tap
+  static final buildFolder = '.pt-build';
+
+  /// A parent object holding config info for the various operations of the library
   static final PublishToolsConfig ptConfig =
       PublishToolsConfig.init(projectDir);
 
-  static final bool isNewVersion = () {
-    final pubSpec = ptConfig.pubSpec;
+  /// Used to check if the `version` of the library has changed since the last commit.
+  static final bool isNewVersion = _git([
+        'tag',
+        '-l',
+        'v${ptConfig.pubSpec.version}',
+      ]).trim() !=
+      'v${ptConfig.pubSpec.version}';
 
-    return _git([
-          'tag',
-          '-l',
-          'v${pubSpec.version}',
-        ]).trim() !=
-        'v${pubSpec.version}';
-  }();
+  /// Check if the project .gitignore has an entry for the homebrew tap build folder
+  static final bool hasIgnore = joinFile(
+    projectDir,
+    ['.gitignore'],
+  ).readAsLinesSync().contains('$buildFolder/');
 
+  /// Private helper method to start a process that runs the  `git` cli command.
   /// https://pub.dev/documentation/grinder/latest/grinder.tools/run.html
   static String _git(List<String>? args) => run(
         'git',
         arguments: args ?? [],
       );
 
-  /// Enables all tasks from the `publish_tools` package.
+  /// Enables all `Grinder` tasks available in the `publish_tools` package.
   static void addAllTasks() {
+    /// Equivalent to `dart analyze .`
     addTask(GrinderTask(
       'pt-analyze',
       taskFunction: () => Analyzer.analyze('.', fatalWarnings: true),
       description: 'Perform static analysis.',
     ));
 
+    /// Equivalent to `dart format .`
     addTask(GrinderTask(
       'pt-format',
       taskFunction: () => DartFmt.format('.'),
       description: 'Format code that might be auto-generated.',
     ));
 
+    /// Equivalent to `dart doc`
     addTask(GrinderTask(
       'pt-doc',
       taskFunction: () => DartDoc.doc(),
       description: 'Generate the API documentation.',
     ));
 
+    /// Equivalent to `dart test .`
     addTask(GrinderTask(
       'pt-test',
       taskFunction: () => TestRunner().test(),
       description: 'Perform tests.',
     ));
 
+    /// Creates a file `meta.dart` in the folder specified by the config, this file contains a JSON representation of the pubspec.yaml file, giving access to that information to `cli` programs.
     addTask(GrinderTask(
       'pt-meta',
       taskFunction: _meta,
       description: 'Update the pubspec.json to display for the cli command.',
     ));
 
+    /// Processes any `markdown` templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use `mustache` syntax to access data from the [PublishToolsConfig] object.
     addTask(GrinderTask(
       'pt-markdown',
       taskFunction: _markdown,
       description: 'Update the markdown templates with pubspec info.',
     ));
 
+    /// Commit the project to github
     addTask(GrinderTask(
       'pt-commit',
-      depends: ['pt-analyze', 'pt-format', 'pt-doc', 'pt-meta', 'pt-markdown'],
+      depends: ['pt-doc', 'pt-analyze', 'pt-meta', 'pt-format', 'pt-markdown'],
       taskFunction: _commit,
       description: 'Commit, tag and push to github.',
     ));
 
+    /// Create a `Release` for the current project in `GitHub`
     addTask(GrinderTask(
       'pt-release',
       taskFunction: _release,
       description: 'Update the markdown templates with pubspec info.',
     ));
 
+    /// Create a homebrew tap for the command line executeable for this project
     addTask(GrinderTask(
       'pt-homebrew',
       taskFunction: _homebrew,
@@ -97,10 +115,10 @@ class PublishTools {
       description: 'Remove build folder and homebrew repository.',
     ));
 
+    /// publish the library to pub.dev/packages
     addTask(GrinderTask(
       'pt-publish',
       taskFunction: _publish,
-      depends: ['pt-commit'],
       description: 'Remove build folder and homebrew repository.',
     ));
 
@@ -115,9 +133,11 @@ class PublishTools {
   // static void _dryrun() =>
   //     run('dart', arguments: ['pub', 'publish', '--dry-run']);
 
+  /// publish the library to pub.dev/packages
   static void _publish() =>
       run('dart', arguments: ['pub', 'publish', '--force']);
 
+  /// currently used to delete the `.pt-build` folder created by this package
   static Future<void> _clean() async {
     final String homebrewRepoName = 'homebrew-${ptConfig.github.repoName}';
 
@@ -149,19 +169,19 @@ class PublishTools {
     }
 
     try {
-      final buildFolder = joinDir(projectDir, [
-        'build',
+      final tapFolder = joinDir(projectDir, [
+        buildFolder,
         homebrewRepoName,
       ]);
 
-      Directory.current = buildFolder;
+      Directory.current = tapFolder;
 
       hasGitInstalled();
 
       _git(['remote', 'rm', 'origin']);
 
-      if (buildFolder.existsSync()) {
-        buildFolder.deleteSync(recursive: true);
+      if (tapFolder.existsSync()) {
+        tapFolder.deleteSync(recursive: true);
 
         log('"build" folder removed.');
       }
@@ -190,16 +210,29 @@ class PublishTools {
     final projectSlug =
         RepositorySlug(ptConfig.github.repoUser, ptConfig.github.repoName);
 
+    // create the build folder for the homebrew tap
     final repoDir = joinDir(
       Directory.current,
       [
-        'build',
+        buildFolder,
         homebrewRepoName,
       ],
     )..createSync(recursive: true);
 
     if (repoService.exists(homebrewSlug.name)) {
       repository = repoService.getRepo(homebrewSlug.name);
+    }
+
+    // add the folder to the .gitignore
+
+    if (!hasIgnore) {
+      joinFile(
+        projectDir,
+        ['.gitignore'],
+      ).writeAsStringSync(
+        '$buildFolder/',
+        mode: FileMode.append,
+      );
     }
 
     Directory.current = repoDir;
@@ -427,7 +460,7 @@ final pubSpec = json.decode('$rawJson');
   }
 
   // void cloneOrPull(Repository repository) {
-  //   final path = p.join('build', repository.name);
+  //   final path = p.join(buildFolder, repository.name);
 
   //   if (Directory(p.join(path, '.git')).existsSync()) {
   //     log('Updating ${repository.cloneUrl}');
