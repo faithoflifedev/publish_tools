@@ -10,5 +10,5 @@ main(args) async {
 @DefaultTask('Just keeping it real')
 @Depends('pt-commit', 'pt-publish')
 build() {
-  // log('building...');
+  log('commit and publish completed');
 }

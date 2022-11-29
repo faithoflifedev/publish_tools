@@ -192,6 +192,7 @@ class PublishTools {
     }
   }
 
+  /// Create a homebrew tap for the command line executeable for this project
   static Future<void> _homebrew() async {
     Repository? repository;
 
@@ -224,7 +225,6 @@ class PublishTools {
     }
 
     // add the folder to the .gitignore
-
     if (!hasIgnore) {
       joinFile(
         projectDir,
@@ -330,6 +330,7 @@ end''';
     }
   }
 
+  /// Create a `Release` for the current project in `GitHub`
   static Future<void> _release() async {
     final pubSpec = ptConfig.pubSpec;
 
@@ -388,6 +389,7 @@ end''';
     _git(['push']);
   }
 
+  /// Processes any `markdown` templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use `mustache` syntax to access data from the [PublishToolsConfig] object.
   static void _markdown() {
     final templates = ptConfig.templates;
 
@@ -458,22 +460,4 @@ final pubSpec = json.decode('$rawJson');
       throw GrinderException('The git cli executable could not be located.');
     }
   }
-
-  // void cloneOrPull(Repository repository) {
-  //   final path = p.join(buildFolder, repository.name);
-
-  //   if (Directory(p.join(path, '.git')).existsSync()) {
-  //     log('Updating ${repository.cloneUrl}');
-
-  //     _git(['fetch', 'origin']);
-  //   } else {
-  //     delete(Directory(path));
-
-  //     _git(['clone', repository.cloneUrl, path]);
-
-  //     _git(['config', 'advice.detachedHead', 'false']);
-  //   }
-
-  //   _git(['checkout', 'origin/HEAD']);
-  // }
 }
