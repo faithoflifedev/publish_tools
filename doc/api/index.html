@@ -47,6 +47,16 @@
 <p><a href="https://pub.dartlang.org/packages/publish_tools"><img src="https://img.shields.io/pub/v/publish_tools.svg" alt="pub package"></a></p>
 <p>This package provides a set of <a href="https://pub.dev/packages/grinder">Grinder</a> tasks that make it easy to release a Dart and Flutter packages.</p>
 <p><a href="https://github.com/faithoflifedev/publish_tools/actions"><img src="https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg" alt="Build Status"></a> <a href="https://shields.io/github/last-commit/faithoflifedev/publish_tools"><img src="https://shields.io/github/last-commit/faithoflifedev/publish_tools" alt="github last commit"></a> <a href="https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart"><img src="https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart" alt="github build"></a> <a href="https://shields.io/github/issues/faithoflifedev/publish_tools"><img src="https://shields.io/github/issues/faithoflifedev/publish_tools" alt="github issues"></a></p>
+<ul>
+<li><a href="#getting-started">Getting started</a>
+<ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#pubspecyaml-setup">pubspec.yaml setup</a></li>
+<li><a href="#publish_toolsyaml-setup">publish_tools.yaml setup</a></li>
+<li><a href="#readmemdchangelogmd-templates">README.md/CHANGELOG.md templates</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="requirements">Requirements</h3>
 <p>In able to use the <code>GitHub</code> publishing features of this package your development setup must meet the following requirements:</p>
@@ -61,7 +71,7 @@
 <pre class="language-yml"><code class="language-yml">dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^0.1.0+5
+  publish_tools: ^0.1.0+6
 </code></pre>
 <p>Optionally, provide a non-default path for your configuration .yaml file: (remember to <code>.gitignore</code> it)</p>
 <pre class="language-yml"><code class="language-yml">publish_tools: tool/config.yaml
@@ -98,6 +108,30 @@ build() {
   log('building...');
 }
 </code></pre>
+<h3 id="readmemdchangelogmd-templates">README.md/CHANGELOG.md templates</h3>
+<p><code>publish_tools</code> can make it easier for you to keep your README.md and CHANGELOG.md file up to date.  To do this it uses <a href="https://mustache.github.io/"><code>mustache</code> templates</a> to dynamically re-create your README and CHANGELOG when you run the appropriate <code>grinder</code> task.  To configure your project to make use of this functionality, you need to have a <code>README.md</code> and <code>CHANGELOG.md</code> mustache template available to the build tool.</p>
+<p>The quickest and simplest way to get your templates in place is to copy your existing <code>README.md</code> and <code>CHANGELOG.md</code> into the tool folder.  Now you can update these files with dynamic fields that will be replaced when the <code>pt-markdown</code> grinder task is run.</p>
+<p>For instance, in this README file in the <code>pubspec.yaml setup</code> section above, there are instructions and an example of how to update your pubspec.yaml to use this tool.  The <code>publish_tools</code> version in the README is set dynamically with a variable.  Here is the section of markup for the same section in the <code>tool/README.md</code> mustache template:</p>
+<pre class="language-text"><code class="language-text">```yml
+dev_dependencies:
+  ...
+  grinder: ^0.9.2
+  publish_tools: ^0.1.0+6
+```
+</code></pre>
+<p>The value for <code>0.1.0+6</code> is filled in automatically by the <code>pt-markdown</code> grinder task.</p>
+<p>Or for the <code>CHANGELOG.md</code> the following template might be used:</p>
+<pre class="language-text"><code class="language-text"># Changelog
+
+## 0.1.0+6
+
+* additional documentation
+* add the build folder that this package creates to the gitignore
+
+</code></pre>
+<p>By default the <code>README.md</code> file is overwritten each time the <code>pt-markdown</code> task runs.  However thee <code>CHANGELOG.md</code> file is <strong>prepended</strong> by default.  This means that the supplied template will be added to the start of the existing CHANGELOG.md file.</p>
+<p>Other available values that can be used dynamically are:</p>
+<table><thead><tr><th>object</th><th>attribute</th><th>description</th></tr></thead><tbody><tr><td>pubspec</td><td></td><td>Information contained within the project <code>pubspec.yaml</code> file.</td></tr><tr><td></td><td>name</td><td>Project name.</td></tr><tr><td></td><td>version</td><td>Project version.</td></tr><tr><td></td><td>homepage</td><td>URL pointing to the package’s homepage (or source code repository).</td></tr><tr><td></td><td>documentation</td><td>URL pointing to documentation for the package.</td></tr><tr><td></td><td>description</td><td>Project short description.</td></tr><tr><td></td><td>publishTo</td><td>Specifies where to publish a package.</td></tr><tr><td>github</td><td></td><td>Values from the <code>publish_tools</code> config file related to GitHub.</td></tr><tr><td></td><td>repoUser</td><td>The GitHub username associated with this project.</td></tr><tr><td></td><td>repoName</td><td>The GitHub repository name for this project.</td></tr><tr><td>homebrew</td><td></td><td>Values from the <code>publish_tools</code> config file related to HomeBrew.</td></tr><tr><td></td><td>className</td><td>The name of the class created for the HomeBrew <code>ruby</code> file for the <code>tap</code> repository that will be created and published to GutHub</td></tr><tr><td></td><td>description</td><td>The description given in the <code>ruby</code> tap repository</td></tr><tr><td></td><td>homePage</td><td>The description given in the <code>ruby</code> tap repository.  By default this is the same as <strong>pubspec.homepage</strong>.</td></tr><tr><td></td><td>binSrc</td><td>The file name of the source code for the command line binary of the project.  The file is expected to be found in the <strong>homebrew.binFolder</strong> and by default the expected file name is <strong>[pubspec.name].dart</strong>.</td></tr><tr><td></td><td>executableName</td><td>The name of the compiled executable for the command line binary to be used by end-users, defaults to <strong>pubspec.name</strong>.</td></tr><tr><td></td><td>binFolder</td><td>The folder that contains the binary source for the command line executeable, defaults to <strong>bin</strong></td></tr><tr><td>meta_path</td><td></td><td>The location to write the <code>meta.dart</code> file that is used to supply <code>pubspec</code> info to the cli binary executable, defaults to <strong>lib/meta.dart</strong>.</td></tr><tr><td>commit</td><td></td><td>The <code>commit</code> message supplied in the <code>publish_tools</code> config file.</td></tr><tr><td>changes</td><td></td><td>The <code>changes</code> (for the CHANGELOG.md) supplied in the <code>publish_tools</code> config file.</td></tr></tbody></table>
 <p>other packages:</p>
 <p><a href="https://pub.dev/packages/cli_pkg">cli_pkg</a></p>
 </section>
@@ -146,7 +180,7 @@ build() {
 <footer>
   <span class="no-break">
     publish_tools
-      0.1.0+6
+      0.1.0+7
   </span>
 
   

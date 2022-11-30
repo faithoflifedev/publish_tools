@@ -20,7 +20,10 @@ In able to use the `GitHub` publishing features of this package your development
 
 * `git` must be available in your command path (most people reading this will have this requirement met, if not see - [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git))
 * you have a `GitHub` account and have setup a personal access token (see the documentation - [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token))
-* The access token should have `delete_repo`, `public_rep` permissions
+* A fine grain token requires the following permissions:
+  *  `Read and write` - Administration - for the Homebrew `tap` repository creation
+  *  `Read and write` - Contents - to update repository content and crete the `release` for the `tap`
+  *  `Read-only` - Metadata - mandatory for all fine-grained personal access tokens
 
 __Make sure that you `.gitignore` your `publish_tools.yaml` file to prevent publishing your token to GitHub__
 

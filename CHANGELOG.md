@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0+7
+
+* readme improvement
+
 ## 0.1.0+6
 
 * additional documentation

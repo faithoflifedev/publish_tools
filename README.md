@@ -20,7 +20,10 @@ In able to use the `GitHub` publishing features of this package your development
 
 * `git` must be available in your command path (most people reading this will have this requirement met, if not see - [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git))
 * you have a `GitHub` account and have setup a personal access token (see the documentation - [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token))
-* The access token should have `delete_repo`, `public_rep` permissions
+* A fine grain token requires the following permissions:
+  *  `Read and write` - Administration - for the Homebrew `tap` repository creation
+  *  `Read and write` - Contents - to update repository content and crete the `release` for the `tap`
+  *  `Read-only` - Metadata - mandatory for all fine-grained personal access tokens
 
 __Make sure that you `.gitignore` your `publish_tools.yaml` file to prevent publishing your token to GitHub__
 
@@ -32,7 +35,7 @@ In your `pubspec.yaml` the following to the `dev_dependencies` section:
 dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^0.1.0+6
+  publish_tools: ^0.1.0+7
 ```
 
 Optionally, provide a non-default path for your configuration .yaml file: (remember to `.gitignore` it)
@@ -93,21 +96,20 @@ For instance, in this README file in the `pubspec.yaml setup` section above, the
 dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^0.1.0+6
+  publish_tools: ^0.1.0+7
 ```
 ````
 
-The value for `0.1.0+6` is filled in automatically by the `pt-markdown` grinder task.
+The value for `0.1.0+7` is filled in automatically by the `pt-markdown` grinder task.
 
 Or for the `CHANGELOG.md` the following template might be used:
 
 ```text
 # Changelog
 
-## 0.1.0+6
+## 0.1.0+7
 
-* additional documentation
-* add the build folder that this package creates to the gitignore
+* readme improvement
 
 ```
 
