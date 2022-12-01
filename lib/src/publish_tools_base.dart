@@ -2,6 +2,7 @@ import 'dart:convert' show json;
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
+import 'package:git/git.dart';
 import 'package:github/github.dart';
 import 'package:grinder/grinder.dart';
 import 'package:publish_tools/publish_tools.dart';
@@ -101,7 +102,7 @@ class PublishTools {
       description: 'Update the markdown templates with pubspec info.',
     ));
 
-    /// Create a homebrew tap for the command line executeable for this project
+    /// Create a homebrew tap for the command line executable for this project
     addTask(GrinderTask(
       'pt-homebrew',
       taskFunction: _homebrew,
@@ -121,17 +122,7 @@ class PublishTools {
       taskFunction: _publish,
       description: 'Remove build folder and homebrew repository.',
     ));
-
-    // addTask(GrinderTask(
-    //   'pt-dry-run',
-    //   depends: ['pt-markdown'],
-    //   taskFunction: _dryrun,
-    //   description: 'Perform a dry-run for pub.dev publishing.',
-    // ));
   }
-
-  // static void _dryrun() =>
-  //     run('dart', arguments: ['pub', 'publish', '--dry-run']);
 
   /// publish the library to pub.dev/packages
   static void _publish() =>
@@ -141,8 +132,7 @@ class PublishTools {
   static Future<void> _clean() async {
     final String homebrewRepoName = 'homebrew-${ptConfig.github.repoName}';
 
-    final github =
-        GitHub(auth: Authentication.withToken(ptConfig.github.bearerToken));
+    final github = GitHub(auth: findAuthenticationFromEnvironment());
 
     final repoService = RepositoryService(github);
 
@@ -178,7 +168,7 @@ class PublishTools {
 
       hasGitInstalled();
 
-      _git(['remote', 'rm', 'origin']);
+      await runGit(['remote', 'rm', 'origin']);
 
       if (tapFolder.existsSync()) {
         tapFolder.deleteSync(recursive: true);
@@ -192,14 +182,13 @@ class PublishTools {
     }
   }
 
-  /// Create a homebrew tap for the command line executeable for this project
+  /// Create a homebrew tap for the command line executable for this project
   static Future<void> _homebrew() async {
     Repository? repository;
 
     final String homebrewRepoName = 'homebrew-${ptConfig.github.repoName}';
 
-    final github =
-        GitHub(auth: Authentication.withToken(ptConfig.github.bearerToken));
+    final github = GitHub(auth: findAuthenticationFromEnvironment());
 
     final repoService = RepositoryService(github);
 
@@ -257,25 +246,27 @@ class PublishTools {
 
       hasGitInstalled();
 
-      _git(['init']);
-      _git(['branch', '-M', 'main']);
-      _git(['remote', 'add', 'origin', repository.cloneUrl]);
+      await runGit(['init']);
+
+      await runGit(['branch', '-M', 'main']);
+
+      await runGit(['remote', 'add', 'origin', repository.cloneUrl]);
     } else if (joinDir(repoDir, ['.git']).existsSync()) {
       // Repo exists since we found the .git folder
       log('Updating ${repository.cloneUrl}');
 
-      _git(['fetch']);
+      await runGit(['fetch']);
 
-      _git(['checkout', 'main']);
+      await runGit(['checkout', 'main']);
     } else {
       // no .git folder so recreate it
       Directory.current = projectDir;
 
       delete(repoDir);
 
-      _git(['clone', repository.cloneUrl, repoDir.path]);
+      await runGit(['clone', repository.cloneUrl, repoDir.path]);
 
-      _git(['config', 'advice.detachedHead', 'false']);
+      await runGit(['config', 'advice.detachedHead', 'false']);
     }
 
     try {
@@ -318,11 +309,12 @@ end''';
       ).writeAsStringSync(ruby, mode: FileMode.write);
 
       // assumes repoDir as current directory
-      _git(['add', '.']);
+      await runGit(['add', '.']);
 
-      _git(['commit', '-m', 'v${pubSpec.version?.canonicalizedVersion}']);
+      await runGit(
+          ['commit', '-m', 'v${pubSpec.version?.canonicalizedVersion}']);
 
-      _git(['push', '-u', 'origin', 'main']);
+      await runGit(['push', '-u', 'origin', 'main']);
     } catch (exception) {
       throw GrinderException('Problem updating ${homebrewSlug.toString()}');
     } finally {
@@ -334,15 +326,14 @@ end''';
   static Future<void> _release() async {
     final pubSpec = ptConfig.pubSpec;
 
-    final github =
-        GitHub(auth: Authentication.withToken(ptConfig.github.bearerToken));
+    final github = GitHub(auth: findAuthenticationFromEnvironment());
 
     final slug =
         RepositorySlug(ptConfig.github.repoUser, ptConfig.github.repoName);
 
     try {
-      final release = await github.repositories
-          .getReleaseByTagName(slug, pubSpec.version?.canonicalizedVersion);
+      final release = await github.repositories.getReleaseByTagName(
+          slug, 'v${pubSpec.version?.canonicalizedVersion}');
 
       await github.repositories.deleteRelease(slug, release);
 
@@ -362,44 +353,35 @@ end''';
   static Future<void> _commit() async {
     final pubSpec = ptConfig.pubSpec;
 
-    // final github =
-    //     GitHub(auth: Authentication.withToken(ptConfig.github.bearerToken));
-
-    // final projectSlug =
-    //     RepositorySlug(ptConfig.github.repoUser, ptConfig.github.repoName);
-
-    // final repository = await github.repositories.getRepository(projectSlug);
-
     hasGitInstalled();
 
-    // _git(['remote', 'add', 'origin', repository.cloneUrl]);
+    await runGit(['add', '.']);
 
-    _git(['add', '.']);
+    await runGit(['commit', '-m', '\'${ptConfig.commit}\'']);
 
-    _git(['commit', '-m', '\'${ptConfig.commit}\'']);
-
-    _git(['pull', '--tags']);
+    await runGit(['pull', '--tags']);
 
     if (isNewVersion) {
-      _git(['tag', 'v${pubSpec.version}']);
+      await runGit(['tag', 'v${pubSpec.version}']);
 
-      _git(['push', '--tags']);
+      await runGit(['push', '--tags']);
     }
 
-    _git(['push']);
+    await runGit(['push']);
   }
 
   /// Processes any `markdown` templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use `mustache` syntax to access data from the [PublishToolsConfig] object.
   static void _markdown() {
     final templates = ptConfig.templates;
 
-    for (var tmpl in templates) {
-      final mustacheTpl = joinFile(Directory.current, ['tool', tmpl.name]);
+    for (var template in templates) {
+      final mustacheTpl = joinFile(Directory.current, ['tool', template.name]);
 
-      final outputFile = File(tmpl.name);
+      final outputFile = File(template.name);
 
-      final template = Template(mustacheTpl.readAsStringSync(), name: tmpl.name)
-          .renderString({
+      final markdownTemplate =
+          Template(mustacheTpl.readAsStringSync(), name: template.name)
+              .renderString({
         'pubspec': ptConfig.pubSpec.toJson(),
         'github': ptConfig.github.toJson(),
         'homebrew': ptConfig.homebrew,
@@ -409,12 +391,12 @@ end''';
         'changes': ptConfig.optionalChangeList,
       });
 
-      switch (tmpl.type) {
+      switch (template.type) {
         case 'prepend':
           final currentContent =
               outputFile.existsSync() ? outputFile.readAsStringSync() : '';
 
-          outputFile.writeAsStringSync(template, mode: FileMode.write);
+          outputFile.writeAsStringSync(markdownTemplate, mode: FileMode.write);
 
           outputFile.writeAsStringSync(
               currentContent.replaceFirst(RegExp(r'# Changelog\n'), ''),
@@ -425,12 +407,12 @@ end''';
         case 'overwrite':
           outputFile.deleteSync();
 
-          outputFile.writeAsStringSync(template);
+          outputFile.writeAsStringSync(markdownTemplate);
 
           break;
 
         default: //append
-          outputFile.writeAsString(template, mode: FileMode.append);
+          outputFile.writeAsString(markdownTemplate, mode: FileMode.append);
       }
     }
   }

@@ -35,7 +35,7 @@ In your `pubspec.yaml` the following to the `dev_dependencies` section:
 dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^0.1.0+7
+  publish_tools: ^0.1.0+8
 ```
 
 Optionally, provide a non-default path for your configuration .yaml file: (remember to `.gitignore` it)
@@ -49,12 +49,14 @@ publish_tools: tool/config.yaml
 Create a folder named `tool` (which will already exist if you use the `grinder` package).  In this folder create you `publish_tools` configuration file.
 
 ```yml
-# this is a minimal config, several fields will be assigned default values
+## this is a minimal config, several fields will be assigned default values
 
-github:
-  repoUser: [your github user]
-  bearerToken: [bearer token created in GitHub]
+## If the github key is present, it will override the default (grab values from .git folder)
+# github:
+#   repoUser: [your github user]
+#   repoName: [defaults to 'name' from pubspec.yaml]
 
+## If the templates key is present, defaults are overridden.  Below matches the default config.
 # templates:
 #   - name: README.md
 #     type: overwrite
@@ -96,20 +98,21 @@ For instance, in this README file in the `pubspec.yaml setup` section above, the
 dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^0.1.0+7
+  publish_tools: ^0.1.0+8
 ```
 ````
 
-The value for `0.1.0+7` is filled in automatically by the `pt-markdown` grinder task.
+The value for `0.1.0+8` is filled in automatically by the `pt-markdown` grinder task.
 
 Or for the `CHANGELOG.md` the following template might be used:
 
 ```text
 # Changelog
 
-## 0.1.0+7
+## 0.1.0+8
 
 * readme improvement
+* repository info from git
 
 ```
 

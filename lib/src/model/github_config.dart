@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:grinder/grinder.dart';
 import 'package:publish_tools/src/util/ext.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pubspec/pubspec.dart';
@@ -27,6 +28,39 @@ class GithubConfig {
           : optionalBearerToken ?? '';
 
   String get repoPath => '$repoUser/$repoName';
+
+  factory GithubConfig.fromGitFolder() {
+    final originUrl = run(
+      'git',
+      arguments: [
+        'config',
+        '--get',
+        'remote.origin.url',
+      ],
+    );
+
+    return GithubConfig.fromUrl(originUrl);
+  }
+
+  factory GithubConfig.fromUrl(String repositoryUrl) {
+    final pathSections = Uri.parse(repositoryUrl).path.split('/');
+
+    var i = 2;
+
+    while (!pathSections[i].trim().contains('.git')) {
+      i++;
+    }
+
+    if (i >= pathSections.length) {
+      throw Exception('Repository name could not be determined.');
+    }
+
+    return GithubConfig(
+      repoUser: pathSections[1],
+      repoName: pathSections[i].split('.')[0],
+      optionalBearerToken: null,
+    );
+  }
 
   factory GithubConfig.fromYamlMap(YamlMap template, PubSpec pubspec) {
     final checkKeys = <String>['repoUser'];

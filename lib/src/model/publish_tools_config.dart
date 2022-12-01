@@ -64,8 +64,6 @@ class PublishToolsConfig {
     final YamlMap config = loadYaml(File(filePath).readAsStringSync());
 
     final checkKeys = <String>[
-      'github',
-      'templates',
       'commit',
     ];
 
@@ -75,7 +73,9 @@ class PublishToolsConfig {
 
     return PublishToolsConfig(
       pubSpec: pubSpec,
-      github: GithubConfig.fromYamlMap(config['github'], pubSpec),
+      github: config.containsKey('github')
+          ? GithubConfig.fromYamlMap(config['github'], pubSpec)
+          : GithubConfig.fromGitFolder(),
       homebrew: HomebrewConfig.fromYamlMap(config['homebrew'] ?? YamlMap()),
       optionalMetaFilePath: config['meta'],
       templates: config.containsKey('templates')

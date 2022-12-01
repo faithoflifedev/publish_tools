@@ -49,12 +49,14 @@ publish_tools: tool/config.yaml
 Create a folder named `tool` (which will already exist if you use the `grinder` package).  In this folder create you `publish_tools` configuration file.
 
 ```yml
-# this is a minimal config, several fields will be assigned default values
+## this is a minimal config, several fields will be assigned default values
 
-github:
-  repoUser: [your github user]
-  bearerToken: [bearer token created in GitHub]
+## If the github key is present, it will override the default (grab values from .git folder)
+# github:
+#   repoUser: [your github user]
+#   repoName: [defaults to 'name' from pubspec.yaml]
 
+## If the templates key is present, defaults are overridden.  Below matches the default config.
 # templates:
 #   - name: README.md
 #     type: overwrite
