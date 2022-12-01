@@ -389,6 +389,8 @@ end''';
         'templates': ptConfig.templates,
         'commit': ptConfig.commit,
         'changes': ptConfig.optionalChangeList,
+        'o-': '{{',
+        '-o': '}}',
       });
 
       switch (template.type) {

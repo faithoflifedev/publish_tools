@@ -7,7 +7,7 @@ main(args) async {
   grind(args);
 }
 
-@DefaultTask('Just keeping it real')
+@DefaultTask('publish to github and pub.dev')
 @Depends('pt-commit', 'pt-publish')
 build() {
   log('commit and publish completed');

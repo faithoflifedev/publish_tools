@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0+9
+
+* fix mustache escaping variables in README
+
+## 0.1.0+8
+
+* readme improvement
+* repository info from git
+
+## 0.1.0+8
+
+* readme improvement
+* repository info from git
+
 ## 0.1.0+8
 
 * readme improvement

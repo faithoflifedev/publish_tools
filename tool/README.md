@@ -93,25 +93,27 @@ The quickest and simplest way to get your templates in place is to copy your exi
 
 For instance, in this README file in the `pubspec.yaml setup` section above, there are instructions and an example of how to update your pubspec.yaml to use this tool.  The `publish_tools` version in the README is set dynamically with a variable.  Here is the section of markup for the same section in the `tool/README.md` mustache template:
 
+
 ````text
 ```yml
 dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^{{ pubspec.version }}
+  publish_tools: ^{{ o- }} pubspec.version {{ -o }}
 ```
 ````
 
-The value for `{{ pubspec.version }}` is filled in automatically by the `pt-markdown` grinder task.
+
+The value for `{{ o- }} pubspec.version {{ -o }}` is filled in automatically by the `pt-markdown` grinder task.
 
 Or for the `CHANGELOG.md` the following template might be used:
 
 ```text
 # Changelog
 
-## {{ pubspec.version }}
+## {{ o- }} pubspec.version {{ -o }}
 
-{{ changes }}
+{{ o- }} changes {{ -o }}
 ```
 
 By default the `README.md` file is overwritten each time the `pt-markdown` task runs.  However thee `CHANGELOG.md` file is **prepended** by default.  This means that the supplied template will be added to the start of the existing CHANGELOG.md file.
@@ -140,8 +142,3 @@ Other available values that can be used dynamically are:
 | meta_path |                 | The location to write the `meta.dart` file that is used to supply `pubspec` info to the cli binary executable, defaults to **lib/meta.dart**. |
 | commit    |                 | The `commit` message supplied in the `publish_tools` config file. |
 | changes   |                 | The `changes` (for the CHANGELOG.md) supplied in the `publish_tools` config file. |
-
-
-other packages:
-
-[cli_pkg](https://pub.dev/packages/cli_pkg)
