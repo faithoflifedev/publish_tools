@@ -6,11 +6,15 @@ This package provides a set of [Grinder](https://pub.dev/packages/grinder) tasks
 
 [![Build Status](https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/publish_tools/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/publish_tools)](https://shields.io/github/last-commit/faithoflifedev/publish_tools) [![github build](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart)](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/publish_tools)](https://shields.io/github/issues/faithoflifedev/publish_tools)
 
+## Table of contents
 - [Getting started](#getting-started)
   - [Requirements](#requirements)
   - [pubspec.yaml setup](#pubspecyaml-setup)
   - [publish\_tools.yaml setup](#publish_toolsyaml-setup)
   - [README.md/CHANGELOG.md templates](#readmemdchangelogmd-templates)
+- [Grinder Tasks](#grinder-tasks)
+- [In the next major release](#in-the-next-major-release)
+
 
 ## Getting started
 
@@ -35,7 +39,7 @@ In your `pubspec.yaml` the following to the `dev_dependencies` section:
 dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^0.1.0+9
+  publish_tools: ^0.1.0+10
 ```
 
 Optionally, provide a non-default path for your configuration .yaml file: (remember to `.gitignore` it)
@@ -142,3 +146,26 @@ Other available values that can be used dynamically are:
 | meta_path |                 | The location to write the `meta.dart` file that is used to supply `pubspec` info to the cli binary executable, defaults to **lib/meta.dart**. |
 | commit    |                 | The `commit` message supplied in the `publish_tools` config file. |
 | changes   |                 | The `changes` (for the CHANGELOG.md) supplied in the `publish_tools` config file. |
+
+## Grinder Tasks
+
+Here is the list of [grinder](https://pub.dev/packages/grinder) tasks available in this package:
+
+| Task name   | Description |
+| ----------- | ----------- |
+| pt-analyze  | Analyze Dart code in a directory - `dart analyze .` |
+| pt-format   | Idiomatically format Dart source code - `dart format .` |
+| pt-doc      | Generate API documentation for Dart projects - `dart doc .` |
+| pt-test     | Generate API documentation for Dart projects - `dart test .` |
+| pt-meta     | Creates a file `meta.dart` in the folder specified by the config (defaults to src/util/), this file contains a JSON representation of the pubspec.yaml file, giving access to that information to `cli` programs. |
+| pt-markdown | Processes any `markdown` templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use `mustache` syntax to access data from the `ptConfig` object. |
+| pt-commit   | Commit the project to github [`git add .`, `git commit {{ ptConfig.commit }}`, `git pull --tags`, `git tag v${pubSpec.version}`, `git push --tags`, `git push`].  Only if {{ pubSpec.version }} has changed, will a new tag be created. |
+| pt-release  | Create a `Release` for the current project in `GitHub` |
+| pt-homebrew | Create a HomeBrew `tap` for the command line executable for this project |
+| pt-clean    | Remove build and homebrew repository folders created by this tool. |
+| pt-publish  | Publish the current package to pub.dartlang.org. |
+
+## In the next major release
+
+* Chocolatey support
+* NPM support
