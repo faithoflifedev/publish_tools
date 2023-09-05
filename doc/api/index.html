@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 6.0.0">
+  <meta name="generator" content="made with love by dartdoc 7.0.0-dev">
   <meta name="description" content="publish_tools API docs, for the Dart programming language.">
   <title>publish_tools - Dart API docs</title>
 
@@ -12,7 +12,7 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
   
   <link rel="stylesheet" href="static-assets/github.css?v1">
   <link rel="stylesheet" href="static-assets/styles.css?v1">
@@ -22,12 +22,12 @@
 </head>
 
 
-<body data-base-href="" data-using-base-href="false">
+<body data-base-href="" data-using-base-href="false" class="light-theme">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
-  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="https://github.com/faithoflifedev/publish_tools">publish_tools package</a></li>
   </ol>
@@ -35,10 +35,19 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
 </header>
-
 <main>
-
 
   <div id="dartdoc-main-content" class="main-content">
       
@@ -47,6 +56,7 @@
 <p><a href="https://pub.dartlang.org/packages/publish_tools"><img src="https://img.shields.io/pub/v/publish_tools.svg" alt="pub package"></a></p>
 <p>This package provides a set of <a href="https://pub.dev/packages/grinder">Grinder</a> tasks that make it easy to release a Dart and Flutter packages.</p>
 <p><a href="https://github.com/faithoflifedev/publish_tools/actions"><img src="https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg" alt="Build Status"></a> <a href="https://shields.io/github/last-commit/faithoflifedev/publish_tools"><img src="https://shields.io/github/last-commit/faithoflifedev/publish_tools" alt="github last commit"></a> <a href="https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart"><img src="https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart" alt="github build"></a> <a href="https://shields.io/github/issues/faithoflifedev/publish_tools"><img src="https://shields.io/github/issues/faithoflifedev/publish_tools" alt="github issues"></a></p>
+<h2 id="table-of-contents">Table of contents</h2>
 <ul>
 <li><a href="#getting-started">Getting started</a>
 <ul>
@@ -56,6 +66,8 @@
 <li><a href="#readmemdchangelogmd-templates">README.md/CHANGELOG.md templates</a></li>
 </ul>
 </li>
+<li><a href="#grinder-tasks">Grinder Tasks</a></li>
+<li><a href="#in-the-next-major-release">In the next major release</a></li>
 </ul>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="requirements">Requirements</h3>
@@ -77,7 +89,7 @@
 <pre class="language-yml"><code class="language-yml">dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^0.1.0+9
+  publish_tools: ^0.1.0+10
 </code></pre>
 <p>Optionally, provide a non-default path for your configuration .yaml file: (remember to <code>.gitignore</code> it)</p>
 <pre class="language-yml"><code class="language-yml">publish_tools: tool/config.yaml
@@ -137,7 +149,178 @@ dev_dependencies:
 </code></pre>
 <p>By default the <code>README.md</code> file is overwritten each time the <code>pt-markdown</code> task runs.  However thee <code>CHANGELOG.md</code> file is <strong>prepended</strong> by default.  This means that the supplied template will be added to the start of the existing CHANGELOG.md file.</p>
 <p>Other available values that can be used dynamically are:</p>
-<table><thead><tr><th>object</th><th>attribute</th><th>description</th></tr></thead><tbody><tr><td>pubspec</td><td></td><td>Information contained within the project <code>pubspec.yaml</code> file.</td></tr><tr><td></td><td>name</td><td>Project name.</td></tr><tr><td></td><td>version</td><td>Project version.</td></tr><tr><td></td><td>homepage</td><td>URL pointing to the package’s homepage (or source code repository).</td></tr><tr><td></td><td>documentation</td><td>URL pointing to documentation for the package.</td></tr><tr><td></td><td>description</td><td>Project short description.</td></tr><tr><td></td><td>publishTo</td><td>Specifies where to publish a package.</td></tr><tr><td>github</td><td></td><td>Values from the <code>publish_tools</code> config file related to GitHub.</td></tr><tr><td></td><td>repoUser</td><td>The GitHub username associated with this project.</td></tr><tr><td></td><td>repoName</td><td>The GitHub repository name for this project.</td></tr><tr><td>homebrew</td><td></td><td>Values from the <code>publish_tools</code> config file related to HomeBrew.</td></tr><tr><td></td><td>className</td><td>The name of the class created for the HomeBrew <code>ruby</code> file for the <code>tap</code> repository that will be created and published to GutHub</td></tr><tr><td></td><td>description</td><td>The description given in the <code>ruby</code> tap repository</td></tr><tr><td></td><td>homePage</td><td>The description given in the <code>ruby</code> tap repository.  By default this is the same as <strong>pubspec.homepage</strong>.</td></tr><tr><td></td><td>binSrc</td><td>The file name of the source code for the command line binary of the project.  The file is expected to be found in the <strong>homebrew.binFolder</strong> and by default the expected file name is <strong>[pubspec.name].dart</strong>.</td></tr><tr><td></td><td>executableName</td><td>The name of the compiled executable for the command line binary to be used by end-users, defaults to <strong>pubspec.name</strong>.</td></tr><tr><td></td><td>binFolder</td><td>The folder that contains the binary source for the command line executeable, defaults to <strong>bin</strong></td></tr><tr><td>meta_path</td><td></td><td>The location to write the <code>meta.dart</code> file that is used to supply <code>pubspec</code> info to the cli binary executable, defaults to <strong>lib/meta.dart</strong>.</td></tr><tr><td>commit</td><td></td><td>The <code>commit</code> message supplied in the <code>publish_tools</code> config file.</td></tr><tr><td>changes</td><td></td><td>The <code>changes</code> (for the CHANGELOG.md) supplied in the <code>publish_tools</code> config file.</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>object</th>
+<th>attribute</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pubspec</td>
+<td></td>
+<td>Information contained within the project <code>pubspec.yaml</code> file.</td>
+</tr>
+<tr>
+<td></td>
+<td>name</td>
+<td>Project name.</td>
+</tr>
+<tr>
+<td></td>
+<td>version</td>
+<td>Project version.</td>
+</tr>
+<tr>
+<td></td>
+<td>homepage</td>
+<td>URL pointing to the package’s homepage (or source code repository).</td>
+</tr>
+<tr>
+<td></td>
+<td>documentation</td>
+<td>URL pointing to documentation for the package.</td>
+</tr>
+<tr>
+<td></td>
+<td>description</td>
+<td>Project short description.</td>
+</tr>
+<tr>
+<td></td>
+<td>publishTo</td>
+<td>Specifies where to publish a package.</td>
+</tr>
+<tr>
+<td>github</td>
+<td></td>
+<td>Values from the <code>publish_tools</code> config file related to GitHub.</td>
+</tr>
+<tr>
+<td></td>
+<td>repoUser</td>
+<td>The GitHub username associated with this project.</td>
+</tr>
+<tr>
+<td></td>
+<td>repoName</td>
+<td>The GitHub repository name for this project.</td>
+</tr>
+<tr>
+<td>homebrew</td>
+<td></td>
+<td>Values from the <code>publish_tools</code> config file related to HomeBrew.</td>
+</tr>
+<tr>
+<td></td>
+<td>className</td>
+<td>The name of the class created for the HomeBrew <code>ruby</code> file for the <code>tap</code> repository that will be created and published to GutHub</td>
+</tr>
+<tr>
+<td></td>
+<td>description</td>
+<td>The description given in the <code>ruby</code> tap repository</td>
+</tr>
+<tr>
+<td></td>
+<td>homePage</td>
+<td>The description given in the <code>ruby</code> tap repository.  By default this is the same as <strong>pubspec.homepage</strong>.</td>
+</tr>
+<tr>
+<td></td>
+<td>binSrc</td>
+<td>The file name of the source code for the command line binary of the project.  The file is expected to be found in the <strong>homebrew.binFolder</strong> and by default the expected file name is <strong>[pubspec.name].dart</strong>.</td>
+</tr>
+<tr>
+<td></td>
+<td>executableName</td>
+<td>The name of the compiled executable for the command line binary to be used by end-users, defaults to <strong>pubspec.name</strong>.</td>
+</tr>
+<tr>
+<td></td>
+<td>binFolder</td>
+<td>The folder that contains the binary source for the command line executeable, defaults to <strong>bin</strong></td>
+</tr>
+<tr>
+<td>meta_path</td>
+<td></td>
+<td>The location to write the <code>meta.dart</code> file that is used to supply <code>pubspec</code> info to the cli binary executable, defaults to <strong>lib/meta.dart</strong>.</td>
+</tr>
+<tr>
+<td>commit</td>
+<td></td>
+<td>The <code>commit</code> message supplied in the <code>publish_tools</code> config file.</td>
+</tr>
+<tr>
+<td>changes</td>
+<td></td>
+<td>The <code>changes</code> (for the CHANGELOG.md) supplied in the <code>publish_tools</code> config file.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="grinder-tasks">Grinder Tasks</h2>
+<p>Here is the list of <a href="https://pub.dev/packages/grinder">grinder</a> tasks available in this package:</p>
+<table>
+<thead>
+<tr>
+<th>Task name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pt-analyze</td>
+<td>Analyze Dart code in a directory - <code>dart analyze .</code></td>
+</tr>
+<tr>
+<td>pt-format</td>
+<td>Idiomatically format Dart source code - <code>dart format .</code></td>
+</tr>
+<tr>
+<td>pt-doc</td>
+<td>Generate API documentation for Dart projects - <code>dart doc .</code></td>
+</tr>
+<tr>
+<td>pt-test</td>
+<td>Generate API documentation for Dart projects - <code>dart test .</code></td>
+</tr>
+<tr>
+<td>pt-meta</td>
+<td>Creates a file <code>meta.dart</code> in the folder specified by the config (defaults to src/util/), this file contains a JSON representation of the pubspec.yaml file, giving access to that information to <code>cli</code> programs.</td>
+</tr>
+<tr>
+<td>pt-markdown</td>
+<td>Processes any <code>markdown</code> templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use <code>mustache</code> syntax to access data from the <code>ptConfig</code> object.</td>
+</tr>
+<tr>
+<td>pt-commit</td>
+<td>Commit the project to github <code>`git add .`, `git commit {{ ptConfig.commit }}`, `git pull --tags`, `git tag v${pubSpec.version}`, `git push --tags`, `git push`</code>.  Only if {{ pubSpec.version }} has changed, will a new tag be created.</td>
+</tr>
+<tr>
+<td>pt-release</td>
+<td>Create a <code>Release</code> for the current project in <code>GitHub</code></td>
+</tr>
+<tr>
+<td>pt-homebrew</td>
+<td>Create a HomeBrew <code>tap</code> for the command line executable for this project</td>
+</tr>
+<tr>
+<td>pt-clean</td>
+<td>Remove build and homebrew repository folders created by this tool.</td>
+</tr>
+<tr>
+<td>pt-publish</td>
+<td>Publish the current package to pub.dartlang.org.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-next-major-release">In the next major release</h2>
+<ul>
+<li>Chocolatey support</li>
+<li>NPM support</li>
+</ul>
 </section>
 
 
@@ -165,14 +348,15 @@ THIS FILE IS AUTOMATICALLY OVER WRITTEN BY PublishTools
   </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-    <header id="header-search-sidebar" class="hidden-l">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li><a href="https://github.com/faithoflifedev/publish_tools">publish_tools package</a></li>
+    <li><a href="https://github.com/faithoflifedev/publish_tools">publish_tools package</a></li>
 </ol>
 
 

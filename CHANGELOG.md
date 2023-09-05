@@ -6,6 +6,12 @@
 * recursive meta.dart folder
 * fixed the lame package description
 
+## 0.1.0+10
+
+* improved README
+* recursive meta.dart folder
+* fixed the lame package description
+
 ## 0.1.0+9
 
 * fix mustache escaping variables in README

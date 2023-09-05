@@ -5,14 +5,14 @@ homepage: https://github.com/faithoflifedev/publish_tools
 repository: https://github.com/faithoflifedev/publish_tools
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   crypto: ^3.0.2
   git: ^2.2.0
-  github: ^9.7.0
+  github: ^9.14.0
   grinder: ^0.9.2
-  http: ^0.13.5
+  http: ^1.1.0
   json_annotation: ^4.7.0
   mustache_template: ^2.0.0
   path: ^1.8.2
