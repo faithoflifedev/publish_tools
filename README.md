@@ -39,7 +39,7 @@ In your `pubspec.yaml` the following to the `dev_dependencies` section:
 dev_dependencies:
   ...
   grinder: ^0.9.2
-  publish_tools: ^0.1.0+11
+  publish_tools: ^0.1.0+12
 ```
 
 Optionally, provide a non-default path for your configuration .yaml file: (remember to `.gitignore` it)
