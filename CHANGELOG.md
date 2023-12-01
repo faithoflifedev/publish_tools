@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0+13
+
+* dependency bump
+* correct meta.dart file comment lint warning
+
 ## 0.1.0+12
 
 * dependency bump
