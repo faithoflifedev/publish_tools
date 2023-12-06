@@ -45,19 +45,18 @@ class GithubConfig {
   factory GithubConfig.fromUrl(String repositoryUrl) {
     final pathSections = Uri.parse(repositoryUrl).path.split('/');
 
-    var i = 2;
-
-    while (!pathSections[i].trim().contains('.git')) {
-      i++;
-    }
-
-    if (i >= pathSections.length) {
-      throw Exception('Repository name could not be determined.');
-    }
+    final repoName = run(
+      'basename',
+      arguments: [
+        '-s',
+        '.git',
+        repositoryUrl,
+      ],
+    );
 
     return GithubConfig(
       repoUser: pathSections[1],
-      repoName: pathSections[i].split('.')[0],
+      repoName: repoName,
       optionalBearerToken: null,
     );
   }

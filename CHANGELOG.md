@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.0+14
+
+* dependency bump
+* correct meta.dart file comment lint warning
+* better remote url parsing
+
 ## 0.1.0+13
 
 * dependency bump
