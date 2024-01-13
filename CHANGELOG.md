@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.0+15
+
+* dependency bump
+* remove single quote from commit message
+
 ## 0.1.0+14
 
 * dependency bump

@@ -358,7 +358,7 @@ end''';
 
     await runGit(['add', '.']);
 
-    await runGit(['commit', '-m', '\'${ptConfig.commit}\'']);
+    await runGit(['commit', '-m', ptConfig.commit]);
 
     await runGit(['pull', '--tags']);
 
