@@ -3,6 +3,11 @@
 ## 0.1.0+15
 
 * dependency bump
+* readme updates
+
+## 0.1.0+15
+
+* dependency bump
 * remove single quote from commit message
 
 ## 0.1.0+14
