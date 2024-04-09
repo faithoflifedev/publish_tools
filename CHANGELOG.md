@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0+17
+
+* readme updates
+
 ## 0.1.0+16
 
 * dependency bump

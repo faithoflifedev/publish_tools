@@ -4,7 +4,7 @@
 
 This package provides a set of [Grinder](https://pub.dev/packages/grinder) tasks that make it easy to release a Dart and Flutter packages.
 
-[![Build Status](https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/publish_tools/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/publish_tools)](https://shields.io/github/last-commit/faithoflifedev/publish_tools) [![github build](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart)](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/publish_tools)](https://shields.io/github/issues/faithoflifedev/publish_tools)
+[![Build Status](https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/publish_tools/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/publish_tools)](https://shields.io/github/last-commit/faithoflifedev/publish_tools) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/publish_tools/dart.yml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/publish_tools)](https://shields.io/github/issues/faithoflifedev/publish_tools)
 
 ## Table of contents
 - [Getting started](#getting-started)
@@ -38,8 +38,8 @@ In your `pubspec.yaml` the following to the `dev_dependencies` section:
 ```yml
 dev_dependencies:
   ...
-  grinder: ^0.9.2
-  publish_tools: ^0.1.0+16
+  grinder: ^0.9.5
+  publish_tools: ^0.1.0+17
 ```
 
 Optionally, provide a non-default path for your configuration .yaml file: (remember to `.gitignore` it)
@@ -163,7 +163,7 @@ Here is the list of [grinder](https://pub.dev/packages/grinder) tasks available 
 | pt-release  | Create a `Release` for the current project in `GitHub` |
 | pt-homebrew | Create a HomeBrew `tap` for the command line executable for this project |
 | pt-clean    | Remove build and homebrew repository folders created by this tool. |
-| pt-publish  | Publish the current package to pub.dartlang.org. |
+| pt-publish  | Publish the current package to pub.dev. |
 
 ## In the next major release
 
