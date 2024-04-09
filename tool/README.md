@@ -4,7 +4,10 @@
 
 This package provides a set of [Grinder](https://pub.dev/packages/grinder) tasks that make it easy to release a Dart and Flutter packages.
 
-[![Build Status](https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/publish_tools/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/publish_tools)](https://shields.io/github/last-commit/faithoflifedev/publish_tools) [![github build](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart)](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/publish_tools)](https://shields.io/github/issues/faithoflifedev/publish_tools)
+[![Build Status](https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/publish_tools/actions)
+[![github last commit](https://shields.io/github/last-commit/faithoflifedev/publish_tools)](https://github.com/faithoflifedev/publish_tools/graphs/commit-activity)
+[![github build](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart)](https://github.com/faithoflifedev/publish_tools/actions)
+[![github issues](https://shields.io/github/issues/faithoflifedev/publish_tools)](https://github.com/faithoflifedev/publish_tools/issues)
 
 ## Table of contents
 
