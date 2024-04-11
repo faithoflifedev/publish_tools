@@ -1,6 +1,6 @@
 name: publish_tools
 description: Do you want to commit to GitHub, publish to pub.dev and HomeBrew with one simple command?  Use this package.
-version: 0.1.0+17
+version: 1.0.0-dev.1
 homepage: https://github.com/faithoflifedev/publish_tools
 repository: https://github.com/faithoflifedev/publish_tools
 

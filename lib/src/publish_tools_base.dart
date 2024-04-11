@@ -23,12 +23,23 @@ class PublishTools {
       PublishToolsConfig.init(projectDir);
 
   /// Used to check if the `version` of the library has changed since the last commit.
-  static final bool isNewVersion = _git([
+  static final isNewVersion = _git([
         'tag',
         '-l',
         'v${ptConfig.pubSpec.version}',
       ]).trim() !=
       'v${ptConfig.pubSpec.version}';
+
+  static final inBranch = ['main', 'master'].contains(_git([
+    'branch',
+    '--show-current',
+  ]).trim());
+
+  static final hasUncommittedChanges =
+      Process.runSync('git', ['status', '--porcelain'])
+          .stdout
+          .toString()
+          .isNotEmpty;
 
   /// Check if the project .gitignore has an entry for the homebrew tap build folder
   static final bool hasIgnore = joinFile(
@@ -352,6 +363,12 @@ end''';
   }
 
   static Future<void> _commit() async {
+    if (!hasUncommittedChanges) {
+      log('No changes to commit.');
+
+      return;
+    }
+
     final pubSpec = ptConfig.pubSpec;
 
     hasGitInstalled();
@@ -360,12 +377,16 @@ end''';
 
     await runGit(['commit', '-m', ptConfig.commit]);
 
-    await runGit(['pull', '--tags']);
+    if (!inBranch) {
+      await runGit(['pull', 'origin', 'main']);
 
-    if (isNewVersion) {
-      await runGit(['tag', 'v${pubSpec.version}']);
+      await runGit(['pull', '--tags']);
 
-      await runGit(['push', '--tags']);
+      if (isNewVersion) {
+        await runGit(['tag', 'v${pubSpec.version}']);
+
+        await runGit(['push', '--tags']);
+      }
     }
 
     await runGit(['push']);

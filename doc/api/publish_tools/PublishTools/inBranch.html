@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the github property from the PublishToolsConfig class, for the Dart programming language.">
-  <title>github property - PublishToolsConfig class - publish_tools library - Dart API</title>
+  <meta name="description" content="API docs for the inBranch property from the PublishTools class, for the Dart programming language.">
+  <title>inBranch property - PublishTools class - publish_tools library - Dart API</title>
 
 
   
@@ -30,10 +30,10 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">publish_tools</a></li>
     <li><a href="../../publish_tools/publish_tools-library.html">publish_tools.dart</a></li>
-    <li><a href="../../publish_tools/PublishToolsConfig-class.html">PublishToolsConfig</a></li>
-    <li class="self-crumb">github property</li>
+    <li><a href="../../publish_tools/PublishTools-class.html">PublishTools</a></li>
+    <li class="self-crumb">inBranch property</li>
   </ol>
-  <div class="self-name">github</div>
+  <div class="self-name">inBranch</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -54,16 +54,16 @@
   <div
       id="dartdoc-main-content"
       class="main-content"
-      data-above-sidebar="publish_tools&#47;PublishToolsConfig-class-sidebar.html"
+      data-above-sidebar="publish_tools&#47;PublishTools-class-sidebar.html"
       data-below-sidebar="">
       <div>
-<h1><span class="kind-property">github</span> property 
+<h1><span class="kind-property">inBranch</span> property 
 </h1></div>
 
         <section class="multi-line-signature">
           
-          GithubConfig
-          <span class="name ">github</span>
+          <a href="https://api.dart.dev/stable/3.3.3/dart-core/bool-class.html">bool</a>
+          <span class="name ">inBranch</span>
           <div class="features"><span class="feature">final</span></div>
 
         </section>
@@ -72,7 +72,10 @@
         
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final GithubConfig github;</code></pre>
+  <pre class="language-dart"><code class="language-dart">static final inBranch = [&#39;main&#39;, &#39;master&#39;].contains(_git([
+  &#39;branch&#39;,
+  &#39;--show-current&#39;,
+]).trim());</code></pre>
 </section>
 
 
@@ -89,12 +92,12 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">publish_tools</a></li>
     <li><a href="../../publish_tools/publish_tools-library.html">publish_tools</a></li>
-    <li><a href="../../publish_tools/PublishToolsConfig-class.html">PublishToolsConfig</a></li>
-    <li class="self-crumb">github property</li>
+    <li><a href="../../publish_tools/PublishTools-class.html">PublishTools</a></li>
+    <li class="self-crumb">inBranch property</li>
 </ol>
 
 
-    <h5>PublishToolsConfig class</h5>
+    <h5>PublishTools class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0-dev.1
+
+* initial support for branches
+* skip commmit when no changes
+
 ## 0.1.0+17
 
 * readme updates
