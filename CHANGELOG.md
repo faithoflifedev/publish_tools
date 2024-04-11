@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0+1
+
+* fix detect branch
+
 ## 1.0.0
 
 * export grinder

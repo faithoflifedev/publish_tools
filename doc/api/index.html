@@ -89,7 +89,7 @@
 <pre class="language-yml"><code class="language-yml">dev_dependencies:
   ...
   grinder: ^0.9.5
-  publish_tools: ^1.0.0-dev.1
+  publish_tools: ^1.0.0
 </code></pre>
 <p>Optionally, provide a non-default path for your configuration .yaml file: (remember to <code>.gitignore</code> it)</p>
 <pre class="language-yml"><code class="language-yml">publish_tools: tool/config.yaml
@@ -113,8 +113,7 @@
 commit: 'sample commit message'
 </code></pre>
 <p>Create</p>
-<pre class="language-dart"><code class="language-dart">import 'package:grinder/grinder.dart';
-import 'package:publish_tools/publish_tools.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:publish_tools/publish_tools.dart';
 
 main(args) async {
   PublishTools.addAllTasks();
@@ -376,7 +375,7 @@ dev_dependencies:
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0
+      1.0.0+1
   </span>
 
   

@@ -29,7 +29,7 @@ class PublishTools {
       ]).trim() !=
       'v${ptConfig.pubSpec.version}';
 
-  static final inBranch = ['main', 'master'].contains(_git([
+  static final inBranch = !['main', 'master'].contains(_git([
     'branch',
     '--show-current',
   ]).trim());
