@@ -29,10 +29,12 @@ class PublishTools {
       ]).trim() !=
       'v${ptConfig.pubSpec.version}';
 
-  static final inMainOrMaster = ['main', 'master'].contains(_git([
+  static final branchName = _git([
     'branch',
     '--show-current',
-  ]).trim());
+  ]).trim();
+
+  static final inMainOrMaster = ['main', 'master'].contains(branchName);
 
   static final hasUncommittedChanges =
       Process.runSync('git', ['status', '--porcelain'])
@@ -386,6 +388,10 @@ end''';
 
         await runGit(['push', '--tags']);
       }
+
+      await runGit(['push']);
+    } else {
+      await runGit(['push', '--set-upstream', 'origin', branchName]);
     }
 
     await runGit(['push']);
