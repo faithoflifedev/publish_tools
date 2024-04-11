@@ -102,7 +102,7 @@ class PublishTools {
     /// Commit the project to github
     addTask(GrinderTask(
       'pt-commit',
-      // depends: ['pt-doc', 'pt-analyze', 'pt-meta', 'pt-format', 'pt-markdown'],
+      depends: ['pt-doc', 'pt-analyze', 'pt-meta', 'pt-format', 'pt-markdown'],
       taskFunction: _commit,
       description: 'Commit, tag and push to github.',
     ));
