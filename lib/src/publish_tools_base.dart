@@ -29,7 +29,7 @@ class PublishTools {
       ]).trim() !=
       'v${ptConfig.pubSpec.version}';
 
-  static final inBranch = !['main', 'master'].contains(_git([
+  static final inMainOrMaster = ['main', 'master'].contains(_git([
     'branch',
     '--show-current',
   ]).trim());
@@ -100,7 +100,7 @@ class PublishTools {
     /// Commit the project to github
     addTask(GrinderTask(
       'pt-commit',
-      depends: ['pt-doc', 'pt-analyze', 'pt-meta', 'pt-format', 'pt-markdown'],
+      // depends: ['pt-doc', 'pt-analyze', 'pt-meta', 'pt-format', 'pt-markdown'],
       taskFunction: _commit,
       description: 'Commit, tag and push to github.',
     ));
@@ -376,7 +376,7 @@ end''';
 
     await runGit(['commit', '-m', ptConfig.commit]);
 
-    if (!inBranch) {
+    if (inMainOrMaster) {
       await runGit(['pull', 'origin', 'main']);
 
       await runGit(['pull', '--tags']);
