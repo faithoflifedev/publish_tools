@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:git/git.dart';
 import 'package:github/github.dart';
-import 'package:grinder/grinder.dart';
 import 'package:publish_tools/publish_tools.dart';
 import 'package:mustache_template/mustache.dart';
 import 'package:path/path.dart' as p;

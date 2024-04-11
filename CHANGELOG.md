@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0
+
+* export grinder
+
 ## 1.0.0-dev.1
 
 * initial support for branches

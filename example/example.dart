@@ -1,4 +1,3 @@
-import 'package:grinder/grinder.dart';
 import 'package:publish_tools/publish_tools.dart';
 
 // this code is normally placed in the [project]/tool folder

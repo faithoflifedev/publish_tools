@@ -73,7 +73,6 @@ commit: 'sample commit message'
 Create 
 
 ```dart
-import 'package:grinder/grinder.dart';
 import 'package:publish_tools/publish_tools.dart';
 
 main(args) async {

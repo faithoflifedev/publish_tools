@@ -39,7 +39,7 @@ In your `pubspec.yaml` the following to the `dev_dependencies` section:
 dev_dependencies:
   ...
   grinder: ^0.9.5
-  publish_tools: ^1.0.0-dev.1
+  publish_tools: ^1.0.0
 ```
 
 Optionally, provide a non-default path for your configuration .yaml file: (remember to `.gitignore` it)
@@ -73,7 +73,6 @@ commit: 'sample commit message'
 Create 
 
 ```dart
-import 'package:grinder/grinder.dart';
 import 'package:publish_tools/publish_tools.dart';
 
 main(args) async {
