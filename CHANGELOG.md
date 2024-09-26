@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0+5
+
+* dependency bump
+* remove library name
+
 ## 1.0.0+4
 
 * fix commit to branch

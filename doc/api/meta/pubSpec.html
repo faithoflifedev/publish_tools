@@ -11,7 +11,7 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
   
   <link rel="stylesheet" href="../static-assets/github.css?v1">
   <link rel="stylesheet" href="../static-assets/styles.css?v1">
@@ -36,14 +36,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button">
+  <div class="toggle" id="theme-button" title="Toggle brightness">
     <label for="theme">
       <input type="checkbox" id="theme" value="light-theme">
       <span id="dark-theme-button" class="material-symbols-outlined">
-        brightness_4
+        dark_mode
       </span>
       <span id="light-theme-button" class="material-symbols-outlined">
-        brightness_5
+        light_mode
       </span>
     </label>
   </div>
@@ -73,7 +73,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">final pubSpec = json.decode(
-    &#39;{&quot;name&quot;:&quot;publish_tools&quot;,&quot;version&quot;:&quot;1.0.0+1&quot;,&quot;homepage&quot;:&quot;https:&#47;&#47;github.com&#47;faithoflifedev&#47;publish_tools&quot;,&quot;environment&quot;:{&quot;sdk&quot;:&quot;&gt;=3.2.0 &lt;4.0.0&quot;},&quot;description&quot;:&quot;Do you want to commit to GitHub, publish to pub.dev and HomeBrew with one simple command?  Use this package.&quot;,&quot;dependencies&quot;:{&quot;crypto&quot;:&quot;^3.0.3&quot;,&quot;git&quot;:&quot;^2.2.1&quot;,&quot;github&quot;:&quot;^9.24.0&quot;,&quot;grinder&quot;:&quot;^0.9.5&quot;,&quot;http&quot;:&quot;^1.2.1&quot;,&quot;json_annotation&quot;:&quot;^4.8.1&quot;,&quot;mustache_template&quot;:&quot;^2.0.0&quot;,&quot;path&quot;:&quot;^1.9.0&quot;,&quot;pubspec&quot;:&quot;^2.3.0&quot;,&quot;recase&quot;:&quot;^4.1.0&quot;,&quot;universal_io&quot;:&quot;^2.2.2&quot;,&quot;yaml&quot;:&quot;^3.1.2&quot;},&quot;dev_dependencies&quot;:{&quot;build_runner&quot;:&quot;^2.4.9&quot;,&quot;json_serializable&quot;:&quot;^6.7.1&quot;,&quot;lints&quot;:&quot;^3.0.0&quot;,&quot;test&quot;:&quot;^1.25.3&quot;},&quot;repository&quot;:&quot;https:&#47;&#47;github.com&#47;faithoflifedev&#47;publish_tools&quot;}&#39;);</code></pre>
+    &#39;{&quot;name&quot;:&quot;publish_tools&quot;,&quot;version&quot;:&quot;1.0.0+4&quot;,&quot;homepage&quot;:&quot;https:&#47;&#47;github.com&#47;faithoflifedev&#47;publish_tools&quot;,&quot;environment&quot;:{&quot;sdk&quot;:&quot;&gt;=3.2.0 &lt;4.0.0&quot;},&quot;description&quot;:&quot;Do you want to commit to GitHub, publish to pub.dev and HomeBrew with one simple command?  Use this package.&quot;,&quot;dependencies&quot;:{&quot;crypto&quot;:&quot;^3.0.3&quot;,&quot;git&quot;:&quot;^2.2.1&quot;,&quot;github&quot;:&quot;^9.24.0&quot;,&quot;grinder&quot;:&quot;^0.9.5&quot;,&quot;http&quot;:&quot;^1.2.1&quot;,&quot;json_annotation&quot;:&quot;^4.8.1&quot;,&quot;mustache_template&quot;:&quot;^2.0.0&quot;,&quot;path&quot;:&quot;^1.9.0&quot;,&quot;pubspec&quot;:&quot;^2.3.0&quot;,&quot;recase&quot;:&quot;^4.1.0&quot;,&quot;universal_io&quot;:&quot;^2.2.2&quot;,&quot;yaml&quot;:&quot;^3.1.2&quot;},&quot;dev_dependencies&quot;:{&quot;build_runner&quot;:&quot;^2.4.9&quot;,&quot;json_serializable&quot;:&quot;^6.7.1&quot;,&quot;lints&quot;:&quot;^3.0.0&quot;,&quot;test&quot;:&quot;^1.25.3&quot;},&quot;repository&quot;:&quot;https:&#47;&#47;github.com&#47;faithoflifedev&#47;publish_tools&quot;}&#39;);</code></pre>
 </section>
 
 
@@ -107,7 +107,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0+4
+      1.0.0+5
   </span>
 
   
