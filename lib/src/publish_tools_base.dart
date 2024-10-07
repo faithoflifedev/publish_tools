@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
@@ -98,10 +99,23 @@ class PublishTools {
       description: 'Update the markdown templates with pubspec info.',
     ));
 
+    addTask(GrinderTask(
+      'pt-pana',
+      taskFunction: _pana,
+      description: 'Scanning the package for pub.dev compatibility.',
+    ));
+
     /// Commit the project to github
     addTask(GrinderTask(
       'pt-commit',
-      depends: ['pt-doc', 'pt-analyze', 'pt-meta', 'pt-format', 'pt-markdown'],
+      depends: [
+        'pt-doc',
+        'pt-analyze',
+        'pt-meta',
+        'pt-format',
+        'pt-markdown',
+        'pt-pana',
+      ],
       taskFunction: _commit,
       description: 'Commit, tag and push to github.',
     ));
@@ -457,6 +471,36 @@ import 'dart:convert' show json;
 
 final pubSpec = json.decode('$rawJson');
 ''');
+  }
+
+  static void _pana() {
+    final whatsInstalled = run(
+      'dart',
+      arguments: ['pub', 'global', 'list'],
+      quiet: true,
+    );
+
+    if (!whatsInstalled.contains('pana')) {
+      run(
+        'dart',
+        arguments: ['pub', 'global', 'activate', 'pana'],
+        quiet: true,
+      );
+    }
+
+    try {
+      final panaResult = run(
+        'pana',
+        arguments: ['-j', '.'],
+        quiet: true,
+      );
+
+      final panaJson = json.decode(panaResult.split('}\n{').last);
+
+      log('PUB POINTS: ${panaJson['scores']['grantedPoints']}');
+    } catch (exception) {
+      throw GrinderException('Problem running pana - $exception');
+    }
   }
 
   static Future<Digest> _download(String url) async {

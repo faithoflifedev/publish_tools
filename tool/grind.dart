@@ -6,14 +6,8 @@ main(args) async {
   grind(args);
 }
 
-// @DefaultTask('publish to github and pub.dev')
-// @Depends('pt-commit', 'pt-publish')
-// build() {
-//   log('commit and publish completed');
-// }
-
 @DefaultTask('publish to github and pub.dev')
-@Depends('pt-commit')
-commit() {
-  log('commit completed');
+@Depends('pt-commit', 'pt-publish')
+build() {
+  log('commit and publish completed');
 }

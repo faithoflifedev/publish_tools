@@ -121,10 +121,23 @@
     description: &#39;Update the markdown templates with pubspec info.&#39;,
   ));
 
+  addTask(GrinderTask(
+    &#39;pt-pana&#39;,
+    taskFunction: _pana,
+    description: &#39;Scanning the package for pub.dev compatibility.&#39;,
+  ));
+
   &#47;&#47;&#47; Commit the project to github
   addTask(GrinderTask(
     &#39;pt-commit&#39;,
-    depends: [&#39;pt-doc&#39;, &#39;pt-analyze&#39;, &#39;pt-meta&#39;, &#39;pt-format&#39;, &#39;pt-markdown&#39;],
+    depends: [
+      &#39;pt-doc&#39;,
+      &#39;pt-analyze&#39;,
+      &#39;pt-meta&#39;,
+      &#39;pt-format&#39;,
+      &#39;pt-markdown&#39;,
+      &#39;pt-pana&#39;,
+    ],
     taskFunction: _commit,
     description: &#39;Commit, tag and push to github.&#39;,
   ));
@@ -191,7 +204,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0+6
+      1.0.0+8
   </span>
 
   

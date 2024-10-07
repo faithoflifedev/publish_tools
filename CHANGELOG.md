@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0+8
+
+* adds a new task pt_pana
+
 ## 1.0.0+6
 
 * update pubspec
