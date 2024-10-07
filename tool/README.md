@@ -170,6 +170,7 @@ Here is the list of [grinder](https://pub.dev/packages/grinder) tasks available 
 | pt-test     | Generate API documentation for Dart projects - `dart test .` |
 | pt-meta     | Creates a file `meta.dart` in the folder specified by the config (defaults to src/util/), this file contains a JSON representation of the pubspec.yaml file, giving access to that information to `cli` programs. |
 | pt-markdown | Processes any `markdown` templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use `mustache` syntax to access data from the `ptConfig` object. |
+| pt-pana     | [pana](https://pub.dev/packages/pana) will perform a local package analysis that matches that performed by the pub.dev server when you run `dart pub publish`.  It's useful for finding any deficiencies in your package before it's published. |
 | pt-commit   | Commit the project to github [`git add .`, `git commit {{ o- }} ptConfig.commit {{ -o }}`, `git pull --tags`, `git tag v${pubSpec.version}`, `git push --tags`, `git push`].  Only if {{ o- }} pubSpec.version {{ -o }} has changed, will a new tag be created. |
 | pt-release  | Create a `Release` for the current project in `GitHub` |
 | pt-homebrew | Create a HomeBrew `tap` for the command line executable for this project |
