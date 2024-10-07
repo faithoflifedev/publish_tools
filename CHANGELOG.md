@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0+6
+
+* update pubspec
+
+## 1.0.0+6
+
+* update pubspec
+
 ## 1.0.0+5
 
 * dependency bump
@@ -20,7 +28,7 @@
 ## 1.0.0-dev.1
 
 * initial support for branches
-* skip commmit when no changes
+* skip commit when no changes
 
 ## 0.1.0+17
 
@@ -62,25 +70,9 @@
 * recursive meta.dart folder
 * fixed the lame package description
 
-## 0.1.0+10
-
-* improved README
-* recursive meta.dart folder
-* fixed the lame package description
-
 ## 0.1.0+9
 
 * fix mustache escaping variables in README
-
-## 0.1.0+8
-
-* readme improvement
-* repository info from git
-
-## 0.1.0+8
-
-* readme improvement
-* repository info from git
 
 ## 0.1.0+8
 
@@ -113,10 +105,6 @@
 ## 0.1.0+2
 
 * pt-release as dependency of pt-homebrew
-
-## 0.1.0+1
-
-* added publish task
 
 ## 0.1.0+1
 

@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:grinder/grinder.dart';
 import 'package:publish_tools/src/util/ext.dart';
 import 'package:path/path.dart' as p;
-import 'package:pubspec/pubspec.dart';
-import 'package:universal_io/io.dart';
+import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:yaml/yaml.dart';
 
 import 'github_config.dart';
@@ -12,7 +12,7 @@ import 'homebrew_config.dart';
 import 'markdown_template.dart';
 
 class PublishToolsConfig {
-  final PubSpec pubSpec;
+  final Pubspec pubSpec;
   final GithubConfig github;
   final HomebrewConfig homebrew;
   final String? optionalMetaFilePath;
@@ -36,27 +36,16 @@ class PublishToolsConfig {
   String get changeList => optionalChangeList ?? commit;
 
   factory PublishToolsConfig.init(Directory projectDir) {
-    final pubSpec = PubSpec.fromYamlString(
-      joinFile(
-        projectDir,
-        ['pubspec.yaml'],
-      ).readAsStringSync(),
-    );
-
-    final pubSpecOtherYaml = pubSpec.unParsedYaml ?? {};
-
-    final grinderConfigFile = pubSpecOtherYaml.containsKey('publish_tools')
-        ? pubSpecOtherYaml['publish_tools']
-        : joinFile(
-            projectDir,
-            ['tool', 'publish_tools.yaml'],
-          ).path;
+    final grinderConfigFile = joinFile(
+      projectDir,
+      ['tool', 'publish_tools.yaml'],
+    ).path;
 
     return PublishToolsConfig.fromYamlFile(grinderConfigFile);
   }
 
   factory PublishToolsConfig.fromYamlFile(String filePath) {
-    final pubSpec = PubSpec.fromYamlString(joinFile(
+    final pubSpec = Pubspec.parse(joinFile(
       Directory.current,
       ['pubspec.yaml'],
     ).readAsStringSync());

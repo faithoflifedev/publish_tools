@@ -1,10 +1,9 @@
 # publish_tools
 
 [![pub package](https://img.shields.io/pub/v/publish_tools.svg)](https://pub.dartlang.org/packages/publish_tools)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This package provides a set of [Grinder](https://pub.dev/packages/grinder) tasks that make it easy to release a Dart and Flutter packages.
-
-[![Build Status](https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/publish_tools/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/publish_tools)](https://shields.io/github/last-commit/faithoflifedev/publish_tools) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/publish_tools/dart.yml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/publish_tools)](https://shields.io/github/issues/faithoflifedev/publish_tools)
 
 ## Table of contents
 - [Getting started](#getting-started)
@@ -15,6 +14,9 @@ This package provides a set of [Grinder](https://pub.dev/packages/grinder) tasks
 - [Grinder Tasks](#grinder-tasks)
 - [In the next major release](#in-the-next-major-release)
 
+[![Build Status](https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/publish_tools/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/publish_tools)](https://shields.io/github/last-commit/faithoflifedev/publish_tools) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/publish_tools/dart.yml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/publish_tools)](https://shields.io/github/issues/faithoflifedev/publish_tools)
+
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-1.svg)](https://www.buymeacoffee.com/faithoflif2)
 
 ## Getting started
 
@@ -39,7 +41,7 @@ In your `pubspec.yaml` the following to the `dev_dependencies` section:
 dev_dependencies:
   ...
   grinder: ^0.9.5
-  publish_tools: ^1.0.0+5
+  publish_tools: ^1.0.0+6
 ```
 
 Optionally, provide a non-default path for your configuration .yaml file: (remember to `.gitignore` it)

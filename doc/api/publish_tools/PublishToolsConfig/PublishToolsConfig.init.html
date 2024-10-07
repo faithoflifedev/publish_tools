@@ -73,21 +73,10 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">factory PublishToolsConfig.init(Directory projectDir) {
-  final pubSpec = PubSpec.fromYamlString(
-    joinFile(
-      projectDir,
-      [&#39;pubspec.yaml&#39;],
-    ).readAsStringSync(),
-  );
-
-  final pubSpecOtherYaml = pubSpec.unParsedYaml ?? {};
-
-  final grinderConfigFile = pubSpecOtherYaml.containsKey(&#39;publish_tools&#39;)
-      ? pubSpecOtherYaml[&#39;publish_tools&#39;]
-      : joinFile(
-          projectDir,
-          [&#39;tool&#39;, &#39;publish_tools.yaml&#39;],
-        ).path;
+  final grinderConfigFile = joinFile(
+    projectDir,
+    [&#39;tool&#39;, &#39;publish_tools.yaml&#39;],
+  ).path;
 
   return PublishToolsConfig.fromYamlFile(grinderConfigFile);
 }</code></pre>
@@ -124,7 +113,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0+5
+      1.0.0+6
   </span>
 
   

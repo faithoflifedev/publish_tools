@@ -1,4 +1,3 @@
-import 'dart:convert' show json;
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
@@ -8,7 +7,7 @@ import 'package:publish_tools/publish_tools.dart';
 import 'package:mustache_template/mustache.dart';
 import 'package:path/path.dart' as p;
 import 'package:publish_tools/src/service/repository_service.dart';
-import 'package:universal_io/io.dart';
+import 'package:publish_tools/src/util/ext.dart';
 
 final projectDir = Directory.current;
 
@@ -390,9 +389,9 @@ end''';
       await runGit(['push']);
     } else {
       await runGit(['push', '--set-upstream', 'origin', branchName]);
-    }
 
-    await runGit(['push']);
+      await runGit(['push']);
+    }
   }
 
   /// Processes any `markdown` templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use `mustache` syntax to access data from the [PublishToolsConfig] object.
@@ -407,6 +406,7 @@ end''';
       final markdownTemplate =
           Template(mustacheTpl.readAsStringSync(), name: template.name)
               .renderString({
+        // 'pubspec': ptConfig.pubSpec.toJson(),
         'pubspec': ptConfig.pubSpec.toJson(),
         'github': ptConfig.github.toJson(),
         'homebrew': ptConfig.homebrew,
@@ -445,7 +445,7 @@ end''';
   }
 
   static void _meta() async {
-    final rawJson = json.encode(ptConfig.pubSpec.toJson());
+    final rawJson = ptConfig.pubSpec.toJson();
 
     File(ptConfig.metaFilePath)
       ..create(recursive: true)

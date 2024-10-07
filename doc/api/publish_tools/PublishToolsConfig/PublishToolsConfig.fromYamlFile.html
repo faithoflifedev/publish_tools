@@ -73,7 +73,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">factory PublishToolsConfig.fromYamlFile(String filePath) {
-  final pubSpec = PubSpec.fromYamlString(joinFile(
+  final pubSpec = Pubspec.parse(joinFile(
     Directory.current,
     [&#39;pubspec.yaml&#39;],
   ).readAsStringSync());
@@ -142,7 +142,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0+5
+      1.0.0+6
   </span>
 
   

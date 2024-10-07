@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:grinder/grinder.dart';
 import 'package:publish_tools/src/util/ext.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:pubspec/pubspec.dart';
-import 'package:universal_io/io.dart';
+import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:yaml/yaml.dart';
 
 part 'github_config.g.dart';
@@ -61,7 +61,7 @@ class GithubConfig {
     );
   }
 
-  factory GithubConfig.fromYamlMap(YamlMap template, PubSpec pubspec) {
+  factory GithubConfig.fromYamlMap(YamlMap template, Pubspec pubspec) {
     final checkKeys = <String>['repoUser'];
 
     if (!template.mapContainsKeys(checkKeys)) {
