@@ -1,9 +1,16 @@
-# publish_tools
+# Simple Publish Tools
 
-[![pub package](https://img.shields.io/pub/v/publish_tools.svg)](https://pub.dartlang.org/packages/publish_tools)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![SDK version](https://flat.badgen.net/pub/sdk-version/publish_tools?style=for-the-badge)
+![Supported platforms](https://flat.badgen.net/pub/flutter-platform/publish_tools?style=for-the-badge)
+![Supported SDKs](https://flat.badgen.net/pub/dart-platform/publish_tools?style=for-the-badge)
 
 This package provides a set of [Grinder](https://pub.dev/packages/grinder) tasks that make it easy to release a Dart and Flutter packages.
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/faithoflifedev/publish_tools/dart.yml?branch=main&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/faithoflifedev/publish_tools/actions)
+[![Pull Requests](https://img.shields.io/github/issues-pr/faithoflifedev/publish_tools?logo=github&logoColor=white&style=for-the-badge)](https://github.com/faithoflifedev/publish_tools/pulls)
+[![Issues](https://img.shields.io/github/issues/faithoflifedev/publish_tools?logo=github&logoColor=white&style=for-the-badge)](https://github.com/faithoflifedev/publish_tools/issues)
+[![github last commit](https://shields.io/github/last-commit/faithoflifedev/google_vision?logo=github&logoColor=white&style=for-the-badge)](https://shields.io/github/last-commit/faithoflifedev/publish_tools)
+[![Pub Score](https://img.shields.io/pub/points/google_vision_flutter?logo=dart&logoColor=00b9fc&style=for-the-badge)](https://pub.dev/packages/publish_tools/score)
 
 ## Table of contents
 - [Getting started](#getting-started)
@@ -14,9 +21,12 @@ This package provides a set of [Grinder](https://pub.dev/packages/grinder) tasks
 - [Grinder Tasks](#grinder-tasks)
 - [In the next major release](#in-the-next-major-release)
 
-[![Build Status](https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg)](https://github.com/faithoflifedev/publish_tools/actions) [![github last commit](https://shields.io/github/last-commit/faithoflifedev/publish_tools)](https://shields.io/github/last-commit/faithoflifedev/publish_tools) [![github build](https://img.shields.io/github/actions/workflow/status/faithoflifedev/publish_tools/dart.yml?branch=main)](https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart) [![github issues](https://shields.io/github/issues/faithoflifedev/publish_tools)](https://shields.io/github/issues/faithoflifedev/publish_tools)
-
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-1.svg)](https://www.buymeacoffee.com/faithoflif2)
+
+[![Pub Package](https://img.shields.io/pub/v/publish_tools.svg?logo=dart&logoColor=00b9fc&color=blue&style=for-the-badge)](https://pub.dartlang.org/packages/publish_tools)
+[![Code Size](https://img.shields.io/github/languages/code-size/faithoflifedev/publish_tools?logo=github&logoColor=white&style=for-the-badge)](https://github.com/faithoflifedev/publish_tools)
+[![Publisher](https://img.shields.io/pub/publisher/publish_tools?style=for-the-badge)](https://pub.dev/publishers/muayid.com)
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 ## Getting started
 

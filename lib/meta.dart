@@ -6,4 +6,4 @@ library;
 import 'dart:convert' show json;
 
 final pubSpec = json.decode(
-    '{description: A set of tasks the enhance the pub.dev publishing experience.  With a single command push to GitHub, pub.dev and even Homebrew., homepage: https://github.com/faithoflifedev/publish_tools, documentation: null, repository: https://github.com/faithoflifedev/publish_tools, issueTracker: null, name: publish_tools, publish_to: null, version: 1.0.0+8}');
+    '{description: A set of tasks the enhance the pub.dev publishing experience.  With a single command push to GitHub, pub.dev and even Homebrew., homepage: https://github.com/faithoflifedev/publish_tools, documentation: null, repository: https://github.com/faithoflifedev/publish_tools, issueTracker: null, name: publish_tools, publish_to: null, version: 1.0.0+9}');

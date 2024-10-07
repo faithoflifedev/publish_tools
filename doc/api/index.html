@@ -51,10 +51,16 @@
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <h1 id="publish_tools">publish_tools</h1>
-<p><a href="https://pub.dartlang.org/packages/publish_tools"><img src="https://img.shields.io/pub/v/publish_tools.svg" alt="pub package"></a>
-<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
+  <h1 id="simple-publish-tools">Simple Publish Tools</h1>
+<p><img src="https://flat.badgen.net/pub/sdk-version/publish_tools?style=for-the-badge" alt="SDK version">
+<img src="https://flat.badgen.net/pub/flutter-platform/publish_tools?style=for-the-badge" alt="Supported platforms">
+<img src="https://flat.badgen.net/pub/dart-platform/publish_tools?style=for-the-badge" alt="Supported SDKs"></p>
 <p>This package provides a set of <a href="https://pub.dev/packages/grinder">Grinder</a> tasks that make it easy to release a Dart and Flutter packages.</p>
+<p><a href="https://github.com/faithoflifedev/publish_tools/actions"><img src="https://img.shields.io/github/actions/workflow/status/faithoflifedev/publish_tools/dart.yml?branch=main&amp;logo=github-actions&amp;logoColor=white&amp;style=for-the-badge" alt="Build Status"></a>
+<a href="https://github.com/faithoflifedev/publish_tools/pulls"><img src="https://img.shields.io/github/issues-pr/faithoflifedev/publish_tools?logo=github&amp;logoColor=white&amp;style=for-the-badge" alt="Pull Requests"></a>
+<a href="https://github.com/faithoflifedev/publish_tools/issues"><img src="https://img.shields.io/github/issues/faithoflifedev/publish_tools?logo=github&amp;logoColor=white&amp;style=for-the-badge" alt="Issues"></a>
+<a href="https://shields.io/github/last-commit/faithoflifedev/publish_tools"><img src="https://shields.io/github/last-commit/faithoflifedev/google_vision?logo=github&amp;logoColor=white&amp;style=for-the-badge" alt="github last commit"></a>
+<a href="https://pub.dev/packages/publish_tools/score"><img src="https://img.shields.io/pub/points/google_vision_flutter?logo=dart&amp;logoColor=00b9fc&amp;style=for-the-badge" alt="Pub Score"></a></p>
 <h2 id="table-of-contents">Table of contents</h2>
 <ul>
 <li><a href="#getting-started">Getting started</a>
@@ -68,8 +74,11 @@
 <li><a href="#grinder-tasks">Grinder Tasks</a></li>
 <li><a href="#in-the-next-major-release">In the next major release</a></li>
 </ul>
-<p><a href="https://github.com/faithoflifedev/publish_tools/actions"><img src="https://github.com/faithoflifedev/publish_tools/workflows/Dart/badge.svg" alt="Build Status"></a> <a href="https://shields.io/github/last-commit/faithoflifedev/publish_tools"><img src="https://shields.io/github/last-commit/faithoflifedev/publish_tools" alt="github last commit"></a> <a href="https://shields.io/github/workflow/status/faithoflifedev/publish_tools/Dart"><img src="https://img.shields.io/github/actions/workflow/status/faithoflifedev/publish_tools/dart.yml?branch=main" alt="github build"></a> <a href="https://shields.io/github/issues/faithoflifedev/publish_tools"><img src="https://shields.io/github/issues/faithoflifedev/publish_tools" alt="github issues"></a></p>
 <p><a href="https://www.buymeacoffee.com/faithoflif2"><img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-1.svg" alt="Buy me a coffee"></a></p>
+<p><a href="https://pub.dartlang.org/packages/publish_tools"><img src="https://img.shields.io/pub/v/publish_tools.svg?logo=dart&amp;logoColor=00b9fc&amp;color=blue&amp;style=for-the-badge" alt="Pub Package"></a>
+<a href="https://github.com/faithoflifedev/publish_tools"><img src="https://img.shields.io/github/languages/code-size/faithoflifedev/publish_tools?logo=github&amp;logoColor=white&amp;style=for-the-badge" alt="Code Size"></a>
+<a href="https://pub.dev/publishers/muayid.com"><img src="https://img.shields.io/pub/publisher/publish_tools?style=for-the-badge" alt="Publisher"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" alt="GitHub License"></a></p>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="requirements">Requirements</h3>
 <p>In able to use the <code>GitHub</code> publishing features of this package your development setup must meet the following requirements:</p>
@@ -90,7 +99,7 @@
 <pre class="language-yml"><code class="language-yml">dev_dependencies:
   ...
   grinder: ^0.9.5
-  publish_tools: ^1.0.0+6
+  publish_tools: ^1.0.0+9
 </code></pre>
 <p>Optionally, provide a non-default path for your configuration .yaml file: (remember to <code>.gitignore</code> it)</p>
 <pre class="language-yml"><code class="language-yml">publish_tools: tool/config.yaml
@@ -376,7 +385,7 @@ dev_dependencies:
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0+8
+      1.0.0+9
   </span>
 
   
