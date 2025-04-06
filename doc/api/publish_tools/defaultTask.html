@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the projectDir property from the publish_tools library, for the Dart programming language.">
-  <title>projectDir property - publish_tools library - Dart API</title>
+  <meta name="description" content="API docs for the defaultTask property from the publish_tools library, for the Dart programming language.">
+  <title>defaultTask property - publish_tools library - Dart API</title>
 
 
   
@@ -26,9 +26,9 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">publish_tools</a></li>
     <li><a href="../publish_tools">publish_tools.dart</a></li>
-    <li class="self-crumb">projectDir property</li>
+    <li class="self-crumb">defaultTask property</li>
   </ol>
-  <div class="self-name">projectDir</div>
+  <div class="self-name">defaultTask</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -51,26 +51,56 @@
       data-above-sidebar="publish_tools&#47;publish_tools-library-sidebar.html"
       data-below-sidebar="">
       <div>
-<h1><span class="kind-top-level-property">projectDir</span> top-level property 
+<h1><span class="kind-top-level-property">defaultTask</span> top-level property 
  
 </h1></div>
 
-        <section class="multi-line-signature">
-          
-          <a href="https://api.dart.dev/stable/3.7.2/dart-io/Directory-class.html">Directory</a>
-          <span class="name ">projectDir</span>
-          <div class="features"><span class="feature">final</span></div>
-
-        </section>
-        
 
         
-<section class="summary source-code" id="source">
-  <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final projectDir = Directory.current;</code></pre>
+  <section id="getter">
+    <section class="multi-line-signature">
+      
+      <span class="returntype"><a href="https://pub.dev/documentation/grinder/0.9.5/grinder/GrinderTask-class.html">GrinderTask</a>?</span>
+      get
+      <span class="name ">defaultTask</span>
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>The default task run when no tasks are specified on the command line.</p>
 </section>
 
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">GrinderTask? get defaultTask =&gt; grinder.defaultTask;</code></pre>
+</section>
 
+  </section>
+
+
+        
+  <section id="setter">
+    <section class="multi-line-signature">
+      
+      set
+      <span class="name ">defaultTask</span>
+      <span class="signature">(<wbr><span class="parameter" id="defaultTask=-param-v"><span class="type-annotation"><a href="https://pub.dev/documentation/grinder/0.9.5/grinder/GrinderTask-class.html">GrinderTask</a>?</span> <span class="parameter-name">v</span></span>)</span>
+      
+
+    </section>
+    
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">set defaultTask(GrinderTask? v) {
+  grinder.defaultTask = v;
+}</code></pre>
+</section>
+
+  </section>
 
   </div> <!-- /.main-content -->
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
@@ -83,7 +113,7 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">publish_tools</a></li>
     <li><a href="../publish_tools">publish_tools</a></li>
-    <li class="self-crumb">projectDir property</li>
+    <li class="self-crumb">defaultTask property</li>
 </ol>
 
     <h5>publish_tools library</h5>

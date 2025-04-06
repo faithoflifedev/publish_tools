@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0+11
+
+* fixed pt-meta
+
 ## 1.0.0+10
 
 * readme

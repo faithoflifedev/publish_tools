@@ -385,7 +385,18 @@ end''';
 
     hasGitInstalled();
 
+    final mightNeedStashing = await pipe([
+      await Process.start('git', ['status', '-s']),
+      await Process.start('cut', ['-c', '4-']),
+    ]);
+
+    final needsStashing = mightNeedStashing.contains('..');
+
     await runGit(['add', '.']);
+
+    if (needsStashing) {
+      await runGit(['stash', 'push', '-q', '-m', ptConfig.commit, '-u', '../']);
+    }
 
     await runGit(['commit', '-m', ptConfig.commit]);
 
@@ -405,6 +416,10 @@ end''';
       await runGit(['push', '--set-upstream', 'origin', branchName]);
 
       await runGit(['push']);
+    }
+
+    if (needsStashing) {
+      await runGit(['stash', 'pop', '-q']);
     }
   }
 
@@ -459,7 +474,16 @@ end''';
   }
 
   static void _meta() async {
-    final rawJson = ptConfig.pubSpec.toJson();
+    final rawJson = json.encode({
+      'description': '${ptConfig.pubSpec.description}',
+      'homepage': '${ptConfig.pubSpec.homepage}',
+      'documentation': '${ptConfig.pubSpec.documentation}',
+      'repository': '${ptConfig.pubSpec.repository}',
+      'issueTracker': '${ptConfig.pubSpec.issueTracker}',
+      'name': ptConfig.pubSpec.name,
+      'publish_to': '${ptConfig.pubSpec.publishTo}',
+      'version': '${ptConfig.pubSpec.version}',
+    });
 
     File(ptConfig.metaFilePath)
       ..create(recursive: true)
@@ -471,6 +495,10 @@ import 'dart:convert' show json;
 
 final pubSpec = json.decode('$rawJson');
 ''');
+
+    DartFmt.format(ptConfig.metaFilePath);
+
+    log('Meta file created at ${ptConfig.metaFilePath}');
   }
 
   static void _pana() {
@@ -516,5 +544,25 @@ final pubSpec = json.decode('$rawJson');
         'git') {
       throw GrinderException('The git cli executable could not be located.');
     }
+  }
+
+  static Future<String> pipe(List<Process> processList) async {
+    if (processList.isEmpty) {
+    } else if (processList.length == 1) {
+      return '';
+    }
+
+    for (var index = 1; index <= processList.length - 1; index++) {
+      processList[index - 1].stdout.pipe(processList[index].stdin);
+    }
+
+    if (await processList.last.exitCode != 0) {
+      throw Exception(
+          'Error: ${await processList.last.stderr.transform(utf8.decoder).join()}');
+    }
+
+    final result = await processList.last.stdout.transform(utf8.decoder).join();
+
+    return result;
   }
 }

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the metaFilePath property from the PublishToolsConfig class, for the Dart programming language.">
-  <title>metaFilePath property - PublishToolsConfig class - publish_tools library - Dart API</title>
+  <meta name="description" content="API docs for the pipe method from the PublishTools class, for the Dart programming language.">
+  <title>pipe method - PublishTools class - publish_tools library - Dart API</title>
 
 
   
@@ -26,10 +26,10 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">publish_tools</a></li>
     <li><a href="../../publish_tools">publish_tools.dart</a></li>
-    <li><a href="../../publish_tools/PublishToolsConfig-class.html">PublishToolsConfig</a></li>
-    <li class="self-crumb">metaFilePath property</li>
+    <li><a href="../../publish_tools/PublishTools-class.html">PublishTools</a></li>
+    <li class="self-crumb">pipe static method</li>
   </ol>
-  <div class="self-name">metaFilePath</div>
+  <div class="self-name">pipe</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -49,40 +49,52 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="publish_tools&#47;PublishToolsConfig-class-sidebar.html"
+    data-above-sidebar="publish_tools&#47;PublishTools-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-property">metaFilePath</span> property 
+<h1><span class="kind-method">pipe</span> static method 
 </h1></div>
 
-    
-
-    
-        
-  <section id="getter">
     <section class="multi-line-signature">
       
-      <span class="returntype"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>
-      get
-      <span class="name ">metaFilePath</span>
+<span class="returntype"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span></span>
+<span class="name ">pipe</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="pipe-param-processList"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-io/Process-class.html">Process</a></span>&gt;</span></span> <span class="parameter-name">processList</span></span></li>
+</ol>)
+
       
 
     </section>
     
 
+
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">String get metaFilePath =&gt;
-    optionalMetaFilePath ?? [&#39;lib&#39;, &#39;meta.dart&#39;].join(p.separator);</code></pre>
+  <pre class="language-dart"><code class="language-dart">static Future&lt;String&gt; pipe(List&lt;Process&gt; processList) async {
+  if (processList.isEmpty) {
+  } else if (processList.length == 1) {
+    return &#39;&#39;;
+  }
+
+  for (var index = 1; index &lt;= processList.length - 1; index++) {
+    processList[index - 1].stdout.pipe(processList[index].stdin);
+  }
+
+  if (await processList.last.exitCode != 0) {
+    throw Exception(
+        &#39;Error: ${await processList.last.stderr.transform(utf8.decoder).join()}&#39;);
+  }
+
+  final result = await processList.last.stdout.transform(utf8.decoder).join();
+
+  return result;
+}</code></pre>
 </section>
 
-  </section>
 
-
-</div> <!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -91,14 +103,14 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">publish_tools</a></li>
     <li><a href="../../publish_tools">publish_tools</a></li>
-    <li><a href="../../publish_tools/PublishToolsConfig-class.html">PublishToolsConfig</a></li>
-    <li class="self-crumb">metaFilePath property</li>
+    <li><a href="../../publish_tools/PublishTools-class.html">PublishTools</a></li>
+    <li class="self-crumb">pipe static method</li>
 </ol>
 
-  <h5>PublishToolsConfig class</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div><!--/.sidebar-offcanvas-->
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>PublishTools class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
 </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>

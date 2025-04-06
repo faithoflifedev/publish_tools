@@ -16,15 +16,11 @@
   <link rel="stylesheet" href="static-assets/github.css?v1">
   <link rel="stylesheet" href="static-assets/styles.css?v1">
   <link rel="icon" href="static-assets/favicon.png?v1">
-
   
 </head>
 
-
 <body data-base-href="" data-using-base-href="false" class="light-theme">
-
 <div id="overlay-under-drawer"></div>
-
 <header id="title">
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
@@ -47,7 +43,6 @@
   </div>
 </header>
 <main>
-
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
@@ -99,7 +94,7 @@
 <pre class="language-yml"><code class="language-yml">dev_dependencies:
   ...
   grinder: ^0.9.5
-  publish_tools: ^1.0.0+9
+  publish_tools: ^1.0.0+10
 </code></pre>
 <p>Optionally, provide a non-default path for your configuration .yaml file: (remember to <code>.gitignore</code> it)</p>
 <pre class="language-yml"><code class="language-yml">publish_tools: tool/config.yaml
@@ -304,6 +299,10 @@ dev_dependencies:
 <td>Processes any <code>markdown</code> templates references in the config.  Usually the README.md and the CHANGELOG.md, the templates can use <code>mustache</code> syntax to access data from the <code>ptConfig</code> object.</td>
 </tr>
 <tr>
+<td>pt-pana</td>
+<td><a href="https://pub.dev/packages/pana">pana</a> will perform a local package analysis that matches that performed by the pub.dev server when you run <code>dart pub publish</code>.  It's useful for finding any deficiencies in your package before it's published.</td>
+</tr>
+<tr>
 <td>pt-commit</td>
 <td>Commit the project to github <code>`git add .`, `git commit {{ ptConfig.commit }}`, `git pull --tags`, `git tag v${pubSpec.version}`, `git push --tags`, `git push`</code>.  Only if {{ pubSpec.version }} has changed, will a new tag be created.</td>
 </tr>
@@ -337,14 +336,14 @@ dev_dependencies:
           <h2>Libraries</h2>
         <dl>
           <dt id="meta">
-  <span class="name"><a href="meta/meta-library.html">meta</a></span> 
+  <span class="name"><a href="meta">meta</a></span> 
 
 </dt>
 <dd>app metadata
 </dd>
 
           <dt id="publish_tools">
-  <span class="name"><a href="publish_tools/publish_tools-library.html">publish_tools</a></span> 
+  <span class="name"><a href="publish_tools">publish_tools</a></span> 
 
 </dt>
 <dd><code>publish_tools</code> is a library of additional <code>grinder</code> tasks that ease publishing a Dart or Flutter package to pub.dev/packages
@@ -352,9 +351,7 @@ dev_dependencies:
 
         </dl>
       </section>
-
   </div> <!-- /.main-content -->
-
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
@@ -362,43 +359,33 @@ dev_dependencies:
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
 </header>
-
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="https://github.com/faithoflifedev/publish_tools">publish_tools package</a></li>
 </ol>
 
-
     <h5 class="hidden-xs"><span class="package-name">publish_tools</span> <span class="package-kind">package</span></h5>
     <ol>
       <li class="section-title">Libraries</li>
-      <li><a href="meta/meta-library.html">meta</a></li>
-      <li><a href="publish_tools/publish_tools-library.html">publish_tools</a></li>
+      <li><a href="meta">meta</a></li>
+      <li><a href="publish_tools">publish_tools</a></li>
 </ol>
 
   </div>
-
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div>
-
 </main>
-
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0+10
+      1.0.0+11
   </span>
-
   
 </footer>
-
 
 
 <script src="static-assets/highlight.pack.js?v1"></script>
 <script src="static-assets/docs.dart.js"></script>
 
-
-
 </body>
-
 </html>
 
