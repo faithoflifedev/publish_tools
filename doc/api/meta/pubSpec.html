@@ -25,24 +25,21 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">publish_tools</a></li>
-    <li><a href="../meta">meta.dart</a></li>
+    <li><a href="../meta/">meta.dart</a></li>
     <li class="self-crumb">pubSpec property</li>
   </ol>
   <div class="self-name">pubSpec</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
   <div
@@ -68,7 +65,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">final pubSpec = json.decode(
-    &#39;{description: A set of tasks the enhance the pub.dev publishing experience.  With a single command push to GitHub, pub.dev and even Homebrew., homepage: https:&#47;&#47;github.com&#47;faithoflifedev&#47;publish_tools, documentation: null, repository: https:&#47;&#47;github.com&#47;faithoflifedev&#47;publish_tools, issueTracker: null, name: publish_tools, publish_to: null, version: 1.0.0+10}&#39;);</code></pre>
+    &#39;{&quot;description&quot;:&quot;A set of tasks the enhance the pub.dev publishing experience.  With a single command push to GitHub, pub.dev and even Homebrew.&quot;,&quot;homepage&quot;:&quot;https:&#47;&#47;github.com&#47;faithoflifedev&#47;publish_tools&quot;,&quot;documentation&quot;:&quot;null&quot;,&quot;repository&quot;:&quot;https:&#47;&#47;github.com&#47;faithoflifedev&#47;publish_tools&quot;,&quot;issueTracker&quot;:&quot;null&quot;,&quot;name&quot;:&quot;publish_tools&quot;,&quot;publish_to&quot;:&quot;null&quot;,&quot;version&quot;:&quot;1.0.1&quot;}&#39;);</code></pre>
 </section>
 
 
@@ -83,7 +80,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">publish_tools</a></li>
-    <li><a href="../meta">meta</a></li>
+    <li><a href="../meta/">meta</a></li>
     <li class="self-crumb">pubSpec property</li>
 </ol>
 
@@ -96,7 +93,7 @@
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0+11
+      1.0.1+1
   </span>
   
 </footer>

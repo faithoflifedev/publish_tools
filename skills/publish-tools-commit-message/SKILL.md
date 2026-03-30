@@ -1,11 +1,11 @@
 ---
-name: commit-message
+name: publish-tools-commit-message
 description: Updates the tool/publish_tools.yaml file to record the commit message and change summary for the next release using conventional commit format.
 metadata:
   version: "1.0"
 ---
 
-# commit-message
+# publish-tools-commit-message
 
 Updates the `tool/publish_tools.yaml` file used by the [`publish_tools`](https://pub.dev/packages/publish_tools) Dart package to record the commit message and change summary for the next release.
 

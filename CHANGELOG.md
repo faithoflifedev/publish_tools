@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1+1
+
+* feat: rename skills&#x2F;commit-message to skills&#x2F;publish-tools-commit-message
+* docs: update README and tool&#x2F;README with new skill name
+* chore: bump version to 1.0.1+1
+
 ## 1.0.1
 
 * feat: add skills&#x2F;commit-message&#x2F;SKILL.md with commit message workflow

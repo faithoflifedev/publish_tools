@@ -208,7 +208,7 @@ skills prune
 
 | Skill | Description |
 |-------|-------------|
-| `commit-message` | Generates conventional commit messages and updates `tool/publish_tools.yaml` with change summaries |
+| `publish-tools-commit-message` | Generates conventional commit messages and updates `tool/publish_tools.yaml` with change summaries |
 
 ## Grinder Tasks
 

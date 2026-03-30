@@ -30,17 +30,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
   <div id="dartdoc-main-content" class="main-content">
@@ -64,6 +61,12 @@
 <li><a href="#pubspecyaml-setup">pubspec.yaml setup</a></li>
 <li><a href="#publish_toolsyaml-setup">publish_tools.yaml setup</a></li>
 <li><a href="#readmemdchangelogmd-templates">README.md/CHANGELOG.md templates</a></li>
+</ul>
+</li>
+<li><a href="#ai-agent-skills">AI Agent Skills</a>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
 </ul>
 </li>
 <li><a href="#grinder-tasks">Grinder Tasks</a></li>
@@ -94,7 +97,7 @@
 <pre class="language-yml"><code class="language-yml">dev_dependencies:
   ...
   grinder: ^0.9.5
-  publish_tools: ^1.0.0+10
+  publish_tools: ^1.0.1
 </code></pre>
 <p>Optionally, provide a non-default path for your configuration .yaml file: (remember to <code>.gitignore</code> it)</p>
 <pre class="language-yml"><code class="language-yml">publish_tools: tool/config.yaml
@@ -264,6 +267,56 @@ dev_dependencies:
 </tr>
 </tbody>
 </table>
+<h2 id="ai-agent-skills">AI Agent Skills</h2>
+<p><code>publish_tools</code> includes <a href="https://pub.dev/packages/skills">AI Agent Skills</a> that help AI coding assistants interact with this package more effectively. Skills are stored in the <code>skills/</code> directory and provide structured guidance for common tasks.</p>
+<h3 id="installation">Installation</h3>
+<p>To install and use the skills in your project:</p>
+<ol>
+<li>
+<p><strong>Activate the skills CLI:</strong></p>
+<pre class="language-bash"><code class="language-bash">dart pub global activate skills
+</code></pre>
+</li>
+<li>
+<p><strong>Update your PATH:</strong> Ensure <code>~/.pub-cache/bin</code> is added to your system PATH.</p>
+</li>
+<li>
+<p><strong>Install the skills:</strong> From your project root, run:</p>
+<pre class="language-bash"><code class="language-bash">skills get publish_tools
+</code></pre>
+<p>Or install all skills from the current package:</p>
+<pre class="language-bash"><code class="language-bash">skills get
+</code></pre>
+</li>
+</ol>
+<h3 id="usage">Usage</h3>
+<p>Once installed, the skills are automatically available to supported AI coding assistants (Cursor, Copilot, Claude, Cline, etc.). The skills provide:</p>
+<ul>
+<li><strong>Structured workflows</strong> for common tasks like generating commit messages</li>
+<li><strong>Best practices</strong> for using <code>publish_tools</code> grinder tasks</li>
+<li><strong>Reference documentation</strong> for package APIs</li>
+</ul>
+<p>To list installed skills:</p>
+<pre class="language-bash"><code class="language-bash">skills list
+</code></pre>
+<p>To remove skills when no longer needed:</p>
+<pre class="language-bash"><code class="language-bash">skills prune
+</code></pre>
+<h3 id="available-skills">Available Skills</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>publish-tools-commit-message</code></td>
+<td>Generates conventional commit messages and updates <code>tool/publish_tools.yaml</code> with change summaries</td>
+</tr>
+</tbody>
+</table>
 <h2 id="grinder-tasks">Grinder Tasks</h2>
 <p>Here is the list of <a href="https://pub.dev/packages/grinder">grinder</a> tasks available in this package:</p>
 <table>
@@ -336,14 +389,14 @@ dev_dependencies:
           <h2>Libraries</h2>
         <dl>
           <dt id="meta">
-  <span class="name"><a href="meta">meta</a></span> 
+  <span class="name"><a href="meta/">meta</a></span> 
 
 </dt>
 <dd>app metadata
 </dd>
 
           <dt id="publish_tools">
-  <span class="name"><a href="publish_tools">publish_tools</a></span> 
+  <span class="name"><a href="publish_tools/">publish_tools</a></span> 
 
 </dt>
 <dd><code>publish_tools</code> is a library of additional <code>grinder</code> tasks that ease publishing a Dart or Flutter package to pub.dev/packages
@@ -366,8 +419,8 @@ dev_dependencies:
     <h5 class="hidden-xs"><span class="package-name">publish_tools</span> <span class="package-kind">package</span></h5>
     <ol>
       <li class="section-title">Libraries</li>
-      <li><a href="meta">meta</a></li>
-      <li><a href="publish_tools">publish_tools</a></li>
+      <li><a href="meta/">meta</a></li>
+      <li><a href="publish_tools/">publish_tools</a></li>
 </ol>
 
   </div>
@@ -377,7 +430,7 @@ dev_dependencies:
 <footer>
   <span class="no-break">
     publish_tools
-      1.0.0+11
+      1.0.1+1
   </span>
   
 </footer>
