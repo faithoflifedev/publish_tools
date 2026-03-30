@@ -18,6 +18,9 @@ This package provides a set of [Grinder](https://pub.dev/packages/grinder) tasks
   - [pubspec.yaml setup](#pubspecyaml-setup)
   - [publish\_tools.yaml setup](#publish_toolsyaml-setup)
   - [README.md/CHANGELOG.md templates](#readmemdchangelogmd-templates)
+- [AI Agent Skills](#ai-agent-skills)
+  - [Installation](#installation)
+  - [Usage](#usage)
 - [Grinder Tasks](#grinder-tasks)
 - [In the next major release](#in-the-next-major-release)
 
@@ -51,7 +54,7 @@ In your `pubspec.yaml` the following to the `dev_dependencies` section:
 dev_dependencies:
   ...
   grinder: ^0.9.5
-  publish_tools: ^1.0.0+11
+  publish_tools: ^1.0.1
 ```
 
 Optionally, provide a non-default path for your configuration .yaml file: (remember to `.gitignore` it)
@@ -157,6 +160,55 @@ Other available values that can be used dynamically are:
 | meta_path |                 | The location to write the `meta.dart` file that is used to supply `pubspec` info to the cli binary executable, defaults to **lib/meta.dart**. |
 | commit    |                 | The `commit` message supplied in the `publish_tools` config file. |
 | changes   |                 | The `changes` (for the CHANGELOG.md) supplied in the `publish_tools` config file. |
+
+## AI Agent Skills
+
+`publish_tools` includes [AI Agent Skills](https://pub.dev/packages/skills) that help AI coding assistants interact with this package more effectively. Skills are stored in the `skills/` directory and provide structured guidance for common tasks.
+
+### Installation
+
+To install and use the skills in your project:
+
+1. **Activate the skills CLI:**
+   ```bash
+   dart pub global activate skills
+   ```
+
+2. **Update your PATH:** Ensure `~/.pub-cache/bin` is added to your system PATH.
+
+3. **Install the skills:** From your project root, run:
+   ```bash
+   skills get publish_tools
+   ```
+
+   Or install all skills from the current package:
+   ```bash
+   skills get
+   ```
+
+### Usage
+
+Once installed, the skills are automatically available to supported AI coding assistants (Cursor, Copilot, Claude, Cline, etc.). The skills provide:
+
+- **Structured workflows** for common tasks like generating commit messages
+- **Best practices** for using `publish_tools` grinder tasks
+- **Reference documentation** for package APIs
+
+To list installed skills:
+```bash
+skills list
+```
+
+To remove skills when no longer needed:
+```bash
+skills prune
+```
+
+### Available Skills
+
+| Skill | Description |
+|-------|-------------|
+| `commit-message` | Generates conventional commit messages and updates `tool/publish_tools.yaml` with change summaries |
 
 ## Grinder Tasks
 

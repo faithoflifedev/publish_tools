@@ -1,6 +1,6 @@
 import 'package:publish_tools/publish_tools.dart';
 
-main(args) async {
+Future<void> main(List<String> args) async {
   PublishTools.addAllTasks();
 
   grind(args);
@@ -8,6 +8,6 @@ main(args) async {
 
 @DefaultTask('publish to github and pub.dev')
 @Depends('pt-commit', 'pt-publish')
-build() {
+void build() {
   log('commit and publish completed');
 }

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+* feat: add skills&#x2F;commit-message&#x2F;SKILL.md with commit message workflow
+* feat: add AI Agent Skills section to README and tool&#x2F;README
+* chore: run dart pub get to resolve pubspec_parse dependency
+
 ## 1.0.0+11
 
 * fixed pt-meta

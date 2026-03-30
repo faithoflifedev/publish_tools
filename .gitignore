@@ -2,6 +2,8 @@
 .dart_tool/
 .packages
 
+.qwen/
+
 # Conventional directory for build output.
 build/
 
